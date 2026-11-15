@@ -1,0 +1,1488 @@
+ APOSTILA — QUI-28
+
+Termodinâmica
+Química
+
+Teoria condensada, exemplos resolvidos e formulário
+
+Baseada nas aulas 1–7 do
+Prof. Amauri Jardim de Paula
+Departamento de Química (IEF-Q)
+Versão 11/2026
+
+Instituto Tecnológico de Aeronáutica  São José dos Campos, 2026
+Sumário
+
+1 Fundamentos e Primeira Lei . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+
+1.1 Sistemas, equilíbrio e processos                  1
+
+1.2 O gás ideal                                       2
+
+1.3 Temperatura e a Lei Zero                          3
+
+1.4 Diferenciais                                      3
+
+1.4.1 Diferencial total e identidades . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+
+1.4.2 Diferencial exata e inexata . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+
+1.5 Trabalho P–V e ciclos                             4
+
+1.6 Expansão térmica e compressibilidade              5
+
+1.7 Calor e a Primeira Lei                            5
+
+1.8 Processos com gás ideal                           6
+
+1.9 Entalpia                                          8
+
+1.10 Experimentos de Joule e de Joule-Thomson         9
+
+1.11 Exercícios resolvidos                            9
+
+2 Entropia, Segunda e Terceira Leis. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+
+2.1 Máquinas térmicas e os enunciados da Segunda Lei  10
+
+2.2 Princípio e ciclo de Carnot                       11
+
+2.3 Entropia                                          12
+
+2.3.1 A função de estado por trás do ciclo de Carnot . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+
+2.3.2 Cálculo de ∆S . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+
+2.4 Processos irreversíveis                           14
+
+2.5 Multiplicidade                                    15
+
+2.6 Entropia estatística e temperatura                16
+
+2.7 Terceira Lei                                      17
+
+2.8 Exercícios resolvidos                             18
+3 Potenciais termodinâmicos e equilíbrio . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+
+3.1 A equação fundamental                       19
+
+3.2 Transformadas de Legendre e espontaneidade  20
+
+3.3 Relações de Maxwell                         21
+
+3.4 Equação de Gibbs-Helmholtz                  22
+
+3.5 Potencial químico e Gibbs-Duhem             23
+
+3.6 Estabilidade e transições de fase           23
+
+3.7 Misturas e soluções                         24
+
+3.8 Reações químicas                            26
+
+3.9 Exercícios resolvidos                       27
+
+Formulário . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+
+Referências Bibliográficas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+
+Índice Remissivo. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+    Capítulo 1
+
+   Fundamentos e Primeira Lei
+
+        A termodinâmica descreve trocas de energia e matéria entre sistemas macroscópicos usando grandezas
+        médias de um número enorme de partículas (∼ 1023). Ela não acompanha cada molécula nem a
+        velocidade das transformações: interessa o estado de equilíbrio e o balanço de energia entre estados.
+        Neste capítulo montamos a linguagem (sistema, estado, diferenciais) e a Primeira Lei.
+
+1.1 Sistemas, equilíbrio e processos
+
+           Definição 1.1.1 — Sistema e vizinhança Sistema é a região de interesse; a fronteira o separa
+           da vizinhança, que pode trocar energia ou matéria com ele; universo = sistema + vizinhança. O
+           sistema é
+
+                • aberto: troca energia e matéria;
+                • fechado: troca só energia;
+                • isolado: não troca nem energia nem matéria.
+           É homogêneo se composição e propriedades são uniformes, e heterogêneo caso contrário. A
+           classificação depende da escala: um aço homogêneo a olho nu é heterogêneo ao microscópio
+           eletrônico.
+
+           Definição 1.1.2 — Equilíbrio termodinâmico Estado em que não há fluxo líquido de calor,
+           matéria ou momento no sistema nem através da fronteira, e as propriedades macroscópicas (T , P, µ)
+           não variam com o tempo. Conforme a grandeza trocada, o equilíbrio é térmico (energia), mecânico
+           (volume) ou difusivo (partículas).
+2                                                           Capítulo 1. Fundamentos e Primeira Lei
+
+   Definição 1.1.3 — Processos espontâneo e reversível Um processo é espontâneo se
+   ocorre sem trabalho externo contínuo (fusão do gelo em ambiente acima de 0 ◦C, difusão de um
+   perfume, corrosão, calor fluindo do quente para o frio). A eletrólise 2 H2O(l) → 2 H2(g) + O2(g) é
+   não espontânea: exige energia continuamente.
+   Um processo é reversível se passa por uma sequência contínua de estados de equilíbrio (etapas
+   infinitesimais), de modo que, invertido, sistema e vizinhança voltam exatamente ao estado inicial
+   sem deixar efeito no universo. É uma idealização.
+
+1.2 O gás ideal
+
+           Definição 1.2.1 — Equação de estado do gás ideal Para gases de baixa densidade,
+           f (P,V, T ) = 0 toma a forma
+
+                                                                             N
+                                        PV = nRT = NkBT, n = NA , R = kBNA, (1.1)
+           com
+                                    NA = 6,022 × 1023 mol−1, kB = 1,38 × 10−23 J K−1,
+                                       R = 8,314 J mol−1 K−1 = 0,08314 L bar mol−1 K−1.
+
+           Em um gás ideal as partículas não interagem entre si.
+
+   Proposição 1.2.2 — Modelo microscópico e energia cinética média Uma partícula
+   de massa m numa caixa de comprimento L e área A troca momento −2mvx a cada choque com o
+   pistão, uma vez a cada ∆t = 2L/vx. Somando sobre N partículas,
+
+                                               PV = Nm⟨v2x⟩.
+
+   Comparando  com  PV  = NkBT :  1  m⟨v2x  ⟩  =  12 kBT .  Como  as  três  direções  são  equivalentes,
+                                  2
+
+                                  ⟨K⟩ = ⟨Kx⟩ + ⟨Ky⟩ + ⟨Kz⟩ = 32 kBT.                                      (1.2)
+
+   Teorema 1.2.3 — Equipartição da energia Cada grau de liberdade quadrático contribui
+   com 12 kBT por partícula:
+
+                                Upartícula = f · 12 kBT, U = f · 12 RT (por mol).
+
+   Gás monoatômico: f = 3 (translação), logo U = 32 RT . Diatômico sem vibração: f = 5 (3
+   translações + 2 rotações), logo U = 52 RT .
+
+   Observação 1.2.4 O slide da aula 1 trata apenas f = 3 e cita que f cresce com rotação e
+   vibração. O valor f = 5 para diatômicas rígidas (O2, N2 desprezando a vibração) é a aplicação
+   direta do teorema e aparece nas listas.
+1.3 Temperatura e a Lei Zero                                                                            3
+
+1.3 Temperatura e a Lei Zero
+
+Operacionalmente, temperatura é “o que o termômetro mede”, ou “aquilo que é igual em dois corpos
+depois de muito tempo em contato”. A definição fundamental virá no Capítulo 2 (1/T = ∂ S/∂U).
+
+Lei 1.3.1 — Zero da Termodinâmica Se A e B estão, cada um, em equilíbrio térmico com
+C, então A e B estão em equilíbrio térmico entre si: TA = TB = TC. Isso faz da temperatura uma
+variável de estado e justifica o uso de termômetros.
+
+■ Exemplo 1.3.2 — Escala absoluta Num termômetro de gás a volume constante, extrapolando
+para P → 0 obtém-se Tvapor/Tgelo ≈ 1,3661, para qualquer gás. Impondo Tvapor − Tgelo = 100:
+
+Solução. (1,3661 − 1) Tgelo = 100 ⇒ Tgelo = 100/0,3661 ≈ 273,15 K (escala Kelvin).                      ■
+
+ 1.4 Diferenciais
+
+1.4.1 Diferencial total e identidades
+
+Definição 1.4.1 — Diferencial total Para f (x1, . . . , xn) e dxi → 0,
+
+                                       n ∂f
+                                       df = ∑           dxi,                         (1.3)
+                                       i=1 ∂ xi x j̸=i
+
+onde (∂ f /∂ x)y é a derivada em relação a x com y constante.
+
+■ Exemplo 1.4.2 — f = x2y3 Compare ∆ f exato com d f para x : 1,00 → 1,01 e y : 2,00 → 2,02.
+Solução. Exato: ∆ f = (1,01)2(2,02)3 − 8 = 0,408. Pelo diferencial,
+
+                            d f = 2xy3 dx + 3x2y2 dy = 16(0,01) + 12(0,02) = 0,40.
+
+A diferença some quando ∆x, ∆y → 0.                                                                     ■
+
+Proposição 1.4.3 — Identidades das derivadas parciais Para f (x, y) suave:
+
+                    ∂f = 1                                     (inversão)            (1.4)
+                    ∂ x y (∂ x/∂ f )y
+∂ x ∂ y ∂ f = −1                                               (regra cíclica)       (1.5)
+∂y f ∂ f x ∂x y
+                     ∂2f ∂2f                                   (derivadas cruzadas)  (1.6)
+
+                            =
+                    ∂x∂y ∂y∂x
+
+A (1.5) sai de d f = 0: dividindo por dy com f fixo, 0 = (∂ f /∂ x)y(∂ x/∂ y) f + (∂ f /∂ y)x. A (1.6)
+gera, no Capítulo 3, as relações de Maxwell.
+4                                     Capítulo 1. Fundamentos e Primeira Lei
+
+■ Exemplo 1.4.4 — Diferencial da equação de estado Diferencie PV = nRT .
+Solução. d(PV ) = V dP + P dV e d(nRT ) = RT dn + nR dT . Para n constante (o caso usual),
+
+                                   V dP + P dV = nR dT.                                        (1.7)
+
+                                                                                                    ■
+
+1.4.2 Diferencial exata e inexata
+
+   Definição 1.4.5 — Exata × inexata Uma diferencial é exata quando é a variação de uma
+   função de estado: 12 dU = U2 − U1 = ∆U depende só dos estados 1 e 2, e dU = 0. É inexata
+   quando o resultado depende do caminho. Calor e trabalho são inexatos: escreve-se δ Q e δW , e a
+
+   integral dá Q e W (nunca “∆Q” ou “∆W ”):
+
+                                                     T2  W = δW.
+
+                           Q = δ Q = m c(T ) dT,
+
+                                                   T1
+
+1.5 Trabalho P–V e ciclos
+
+Um gás à pressão P empurra um pistão de área A com força F = PA. Num deslocamento dx, F dx = P dV .
+
+O trabalho realizado pelo gás é
+
+                                                   Vf                                          (1.8)
+
+                                   Wgás = P(V ) dV,
+
+                                                 Vi
+
+a área sob a curva no diagrama P–V . Num ciclo, Wciclo = P dV é a área interna: positivo se o ciclo é
+percorrido no sentido horário (motor) e negativo no anti-horário (refrigerador).
+
+            isoterma PV = cte
+
+            adiabática PV γ = cte
+
+   2        isocórica
+
+            isobárica
+
+P/P0                                                                               Wciclo > 0
+                                                                                P
+
+   1
+
+   0
+
+      0  1                 2       3                                               V
+
+            V /V0
+
+ Figura 1.1: Esquerda: os quatro processos básicos de um gás ideal monoatômico (γ = 5/3) saindo do mesmo
+estado; a adiabática cai mais rápido que a isoterma. Direita: ciclo horário, cuja área é o trabalho líquido realizado
+
+                                                              pelo gás.
+1.6 Expansão térmica e compressibilidade                                                                5
+
+1.6 Expansão térmica e compressibilidade
+
+Definição 1.6.1 — α e κ
+
+α = 1 ∂V , κ = − 1 ∂V , ∂ P = α . (1.9)
+V ∂T P                      V ∂P T                                  ∂T V κ
+
+α mede quanto o material expande ao aquecer (P fixo), κ quanto ele comprime ao ser pressionado
+(T fixo) e α/κ quanto a pressão sobe ao aquecer com V fixo. A última igualdade vem da regra
+cíclica (1.5). Para variações pequenas, ∆V ≈ αV0∆T e ∆V ≈ −κV0∆P.
+
+■ Exemplo 1.6.2 — Gás ideal a 300 K e 1 bar Calcule V , α, κ e α/κ.
+
+Solução. Com V = RT /P:
+
+α = 1 R = 1,                      1 RT 1                            α = P.
+      VP T                  κ= 2 = ,                                κT
+
+                                 VP P
+
+Numericamente, V = 0,08314 × 300/1,0 = 24,9 L mol−1, α = 3,3 × 10−3 K−1, κ = 1 bar−1 e α/κ =
+3,3 × 10−3 bar K−1. Para comparação, no alumínio α ∼ 10−5 K−1 e κ ∼ 10−6 bar−1: sólidos quase não
+
+expandem nem comprimem.                                                                                 ■
+
+1.7 Calor e a Primeira Lei
+
+Definição 1.7.1 — Calor, capacidade térmica e calor específico Joule mostrou que
+calor é energia: 1 cal = 4,186 J (energia que eleva 1 g de água em 1 ◦C). Com c(T ) o calor específico
+
+e C = mc a capacidade térmica do sistema,
+
+                                          T2                        T2
+
+δ Q = m c(T ) dT,           Q = C(T ) dT = n c(T ) dT.
+
+                            T1                                      T1
+
+Se c é constante no intervalo, Q = mc∆T = nc∆T .
+
+    A energia mecânica Emec = K + Ep se conserva sob forças conservativas, porque W = ∆K = −∆Ep.
+Com 1023 partículas não dá para acompanhar vetores (e há o princípio da incerteza). Agrupa-se então toda
+a energia microscópica (translação, rotação, vibração, ligações. . . ) em uma única grandeza, a energia
+interna U. Para um sistema termodinâmico em repouso, a energia cinética e a potencial macroscópicas
+são desprezíveis, e Etotal = U.
+
+Lei 1.7.2 — Primeira Lei da Termodinâmica Para um sistema fechado,
+
+                            dU = δ Q + δW, ∆U = Q +W,                       (1.10)
+
+e ∆Esistema + ∆Evizinhança = 0: a energia do universo se conserva.
+6                                                              Capítulo 1. Fundamentos e Primeira Lei
+
+   Convenção do curso (referencial no sistema). Sinal + significa que o sistema ganha energia e
+   sinal − que ele perde: Q > 0 é calor recebido e W > 0 é trabalho recebido. Como numa expansão
+   (dV > 0) o gás perde energia para a vizinhança,
+
+                                        δW = −P dV, dU = δ Q − P dV.
+
+   Algumas questões invertem a convenção (“positivo quando o sistema perde energia”). Nesse caso
+   todos os sinais de Q, W e ∆U trocam.
+
+   Observação 1.7.3 O slide “A primeira lei da termodinâmica” (aula 2) diz que “K e U são
+   desprezíveis”. O correto é K e V (energia cinética e potencial macroscópicas): é justamente U que
+   sobra, Etotal = U .
+
+1.8 Processos com gás ideal
+
+Duas experiências fixam o comportamento do gás ideal (Seção 1.10): na expansão livre de Joule, ∆U = 0
+e observa-se ∆T = 0; no experimento de Joule-Thomson, ∆U = PiVi − Pf Vf = nR(Ti − Tf ) e observa-se
+∆T = 0, e daí ∆U = 0. Logo
+
+                U = U(T ) (gás ideal: a energia interna só depende da temperatura).                              (1.11)
+
+   Proposição 1.8.1 — CP e CV do gás ideal Com
+
+                dU = nCV dT (isocórico) e dU = nCP dT − P dV (isobárico),
+
+   igualando os dU para o mesmo dT (pois U = U(T )) e usando P dV = nR dT a P fixo:
+
+                                    CP = CV + R,               γ ≡ CP .                                       (1.12)
+                                                                    CV
+
+   Monoatômico:  U  =  32 RT  ⇒ CV  =  3  R,  CP  =  52 R,  γ  =  53 .  Diatômico  rígido:  CV  =  5  R,  CP  =  72 R,
+                                       2                                                           2
+   γ = 75 .
+
+   Proposição 1.8.2 — Os quatro processos Para n mols de gás ideal, com dU = nCV dT
+   sempre:
+
+                processo           condição   trabalho recebido W        calor Q
+
+                isocórico          V cte      0                          ∆U = nCV ∆T
+                isobárico          P cte      −P∆V                       nCP∆T = ∆H
+                isotérmico (rev.)  T cte      −nRT ln V2 V1              nRT ln VV21 (∆U = 0)
+                adiabático (rev.)  Q=0        ∆U = nCV ∆T                0
+
+   Na adiabática reversível, P dV = −nCV dT . Combinando com (1.7) vem dP/P = −γ dV /V , e
+
+   integrando:
+
+                       PV γ = cte,            TV γ−1 = cte,                T                                  (1.13)
+                                                                        P(γ−1)/γ = cte.
+1.8 Processos com gás ideal                                                                                  7
+
+Sinais na convenção do sistema (gás ideal):
+
+                         processo                              dU δW δ Q
+
+                         aquecimento a V cte                   >0 =0 >0
+
+                         expansão adiabática                   <0 <0 =0
+
+                         compressão adiabática                 >0 >0 =0
+
+                         expansão isotérmica                   =0 <0 >0
+
+                         compressão isotérmica                 =0 >0 <0
+
+                         aquecimento a P cte (expande) > 0 < 0 > 0
+
+Na expansão adiabática o gás paga o trabalho com a própria energia interna e esfria. Na isotérmica,
+o reservatório repõe exatamente o que sai como trabalho.
+
+■ Exemplo 1.8.3 — Aquecimento isocórico Um gás ideal monoatômico (n = 0,80 mol, V = 3,0 L,
+T1 = 290 K) recebe 1200 J de calor com volume constante. Ache T2, P1 e P2.
+
+Solução.  W    = 0 ⇒ ∆U  = Q = 1200 J.  Com CV  =  n  3  R  =  9,977  J  K−1,  ∆T    = 1200/9,977 = 120,3 K  e
+                                                      2
+T2 ≈ 410 K. Pela (1.1), P1 = nRT1/V = 6,43 × 105 Pa e P2 = 9,10 × 105 Pa.
+                                                                                                             ■
+
+■ Exemplo 1.8.4 — Expansão isotérmica reversível Um mol de gás ideal a 300 K expande
+reversivelmente de 5 L para 10 L. Ache o trabalho feito pelo gás, o calor e as pressões.
+
+Solução. Wgás = nRT ln(V2/V1) = 8,314 × 300 × ln 2 = 1729 J = Q (e W = −1729 J na convenção do
+
+sistema). P1 = RT /V1 = 4,99 × 105 Pa e P2 = 2,49 × 105 Pa.                                                  ■
+
+■ Exemplo 1.8.5 — Compressão contra pressão externa constante Um gás ideal a 3,00 L e
+2,00 bar é comprimido isotermicamente até 1,00 L por uma pressão externa constante. Qual a menor Pext
+possível e qual o trabalho?
+
+Solução. Ao final o gás está a P2 = P1V1/V2 = 6,00 bar. Para a compressão chegar a V2, a pressão
+
+externa precisa vencer a do gás até o fim, logo Pext,mín = 6,00 bar. O trabalho recebido é W = −Pext∆V =
+−(6,00 × 105)(1,00 − 3,00) × 10−3 = +1200 J na convenção do sistema, ou −1200 J se “positivo =
+
+sistema perde”. Compare: o caminho reversível exigiria só nRT ln 3 = P1V1 ln 3 = 659 J. Num processo
+
+irreversível gasta-se mais trabalho.                                                                         ■
+
+■ Exemplo 1.8.6 — Adiabática reversível Um mol de gás monoatômico a 300 K expande
+reversível e adiabaticamente de 2,0 L a 4,0 L. Ache T2, ∆U e P2/P1.
+
+Solução.  T2 = T1(V1/V2)γ−1 = 300 (0,5)2/3 = 189 K.      ∆U  =W  =       3  R(T2  −  T1  )  =  −1,38  kJ:  o gás perde
+                                                                         2
+energia e esfria. P2/P1 = (0,5)5/3 = 0,315, contra 0,5 numa isotérmica: a adiabática é mais íngreme
+
+(Figura 1.1).                                                                                                ■
+        8                                   Capítulo 1. Fundamentos e Primeira Lei
+
+1.9 Entalpia
+
+Definição 1.9.1 — Entalpia
+
+                                   H = U + PV.                       (1.14)
+
+É a energia para “criar o sistema do nada” num ambiente a pressão P: a energia interna mais o
+trabalho PV de abrir espaço. A P constante, dH = dU + P dV = δ QP: o calor a pressão constante
+é ∆H.
+
+Proposição 1.9.2 — Capacidades caloríficas
+
+              CV =  ∂U    ,  CP =  ∂H    ,                T2         (1.15)
+
+                    ∂T V           ∂T P     ∆H = CP(T ) dT (P cte).
+
+                                                        T1
+
+Para o hélio, CP ≈ 52 R = 4,97 cal mol−1 K−1, quase constante. Água, metano e diamante têm CP(T )
+variável, porque rotação, vibração e interações entram em U.
+
+■ Exemplo 1.9.3 — ∆H com CP(T ) O CP de uma substância é β [4,0 + 2,0 (K)/T + 0,10 (K−1) T ],
+com β = 0,10 J mol−1 K−1. Calcule ∆H para 3,0 mol aquecidos de 20 K a 50 K a 1 bar.
+
+Solução. Integrando termo a termo,
+
+          ∆H = nβ 4,0 (T2 − T1) + 2,0 ln TT21 + 0,05 (T22 − T12) = 0,30 [120 + 1,83 + 105] = 68 J.
+
+                                                                                                                                                                                                                                 ■
+
+■ Exemplo 1.9.4 — ∆U × ∆H em mudanças de fase, a 1 atm A P constante, ∆U = ∆H − P∆V ,
+com 1 atm L = 0,101 kJ.
+Solução. Fusão do gelo: ∆fusH = 6,01 kJ mol−1 e V vai de 0,0196 a 0,0180 L mol−1, então P∆V ≈
+−0,0002 kJ mol−1, logo ∆U ≈ ∆H.
+Vaporização da água (∆vapH = 40,7 kJ mol−1, ∆V ≈ 30,6 L mol−1): ∆U = 40,7 − 30,6 × 0,101 =
+37,6 kJ mol−1. Desses 40,7 kJ, 37,6 kJ vencem as forças intermoleculares e 3,1 kJ empurram a atmosfera.
+
+                                                                                                                                                                                                                                 ■
+1.10 Experimentos de Joule e de Joule-Thomson                                                        9
+
+1.10 Experimentos de Joule e de Joule-Thomson
+
+Definição 1.10.1 — Coeficientes de Joule e de Joule-Thomson Expansão livre de
+Joule: gás se expande no vácuo dentro de paredes adiabáticas, com W = 0 e Q = 0, logo ∆U = 0.
+Mede-se µJ = (∂ T /∂V )U .
+Expansão de Joule-Thomson: fluxo estacionário através de uma parede porosa, em isolamento
+térmico. O trabalho líquido é PiVi − Pf Vf , então Uf + Pf Vf = Ui + PiVi: o processo é isentálpico
+(∆H = 0). Mede-se
+
+             µJT =  ∂T ,    ∂ H = −CP µJT ,     ∂U = −CV µJ.
+                    ∂P H    ∂P T                ∂V T
+
+Para o gás ideal, µJ = µJT = 0. Em gases reais, µJ̸ = 0 (Keyes-Sears, 1924, na expansão livre) e
+µJT pode ser positivo, negativo ou nulo, conforme P e T iniciais.
+
+                            µJT = 0 (inversão)
+
+                    T
+
+                                               µJT > 0: esfria µJT < 0: aquece
+
+                                                                                                     P
+Figura 1.2: Uma curva isentálpica (esquemática). Expandir (P diminui) à esquerda do máximo reduz T : é a região
+
+               usada na liquefação de gases, de preferência a temperaturas baixas, onde |µJT | é maior.
+
+1.11 Exercícios resolvidos
+
+■ Exemplo 1.11.1 — Sinais Em uma expansão adiabática reversível de um gás ideal, quais os sinais
+de dU e δW (convenção do sistema)?
+
+Solução. δ Q = 0 e o gás realiza trabalho, então δW = −P dV < 0. Pela Primeira Lei, dU = δW < 0: o
+
+gás esfria.                                                                                          ■
+
+■ Exemplo 1.11.2 — Joule-Thomson em gás real Um gás real passa por uma expansão de
+Joule-Thomson. Sua temperatura sempre cai?
+
+Solução. Não. Como dT = µJT dP e dP < 0, a temperatura cai se µJT > 0 e sobe se µJT < 0. O sinal
+
+de µJT depende dos P e T iniciais (Figura 1.2). Para o gás ideal, nada muda.                         ■
+Capítulo 2
+
+Entropia, Segunda e Terceira Leis
+
+A Primeira Lei faz o balanço de energia, mas não diz se um processo ocorre. Ela não prevê, por
+exemplo, se N2 + 3 H2 ⇌ 2 NH3 avança nem qual é a constante de equilíbrio. Falta uma grandeza ligada
+à irreversibilidade: a entropia. Este capítulo a constrói por dois caminhos, o macroscópico (máquinas
+
+térmicas, Carnot) e o microscópico (contagem de microestados).
+
+2.1 Máquinas térmicas e os enunciados da Segunda Lei
+
+Definição 2.1.1 — Motor e refrigerador Uma máquina térmica opera em ciclos entre uma
+fonte quente (TH) e uma fria (TC); veja a Figura 2.1. Em cada ciclo, todas as funções de estado
+voltam ao valor inicial: ∆U = ∆H = ∆S = 0. Usando módulos (QH, QC,W > 0):
+
+     • motor: recebe QH, entrega W , rejeita QC. Pela Primeira Lei, W = QH − QC e a eficiência é
+
+            e = W = 1 − QC ;                          (2.1)
+            QH  QH
+
+• refrigerador: recebe W , retira QC da fonte fria e entrega QH = QC + W à quente. O
+  coeficiente de desempenho é
+
+            erefrig = QC = QC .                       (2.2)
+                      W QH − QC
+
+Exemplos: e = 0,4 significa 4 kWh de trabalho a cada 10 kWh de calor; erefrig = 3 significa 3 kWh
+retirados do frio por 1 kWh gasto.
+
+Lei 2.1.2 — Segunda Lei — enunciados de Kelvin e de Clausius (K) É impossível um
+processo cíclico cujo único efeito seja retirar calor de um reservatório e convertê-lo integralmente
+em trabalho.
+(C) É impossível um processo cíclico cujo único efeito seja transferir calor de um corpo frio para
+um corpo quente.
+2.2 Princípio e ciclo de Carnot                                                     11
+
+fonte quente TH                                        fonte quente TH
+           QH                                                     QH
+
+M                                W                           R                   W
+
+        QC                                                           QC
+fonte fria TC                                                fonte fria TC
+
+motor: Wciclo > 0                                      refrigerador: Wciclo < 0
+
+Figura 2.1: Diagramas de fluxo de energia. Nos dois casos a máquina troca calor com duas fontes; o enunciado de
+              Kelvin proíbe tirar a fonte fria do motor, e o de Clausius proíbe tirar o W do refrigerador.
+
+Proposição 2.1.3 — Equivalência K ⇔ C Se C falhasse, um refrigerador “miraculoso” (sem
+W ) devolveria à fonte quente o QC rejeitado por um motor comum. O conjunto transformaria
+QH − QC inteiramente em trabalho, violando K. Se K falhasse, um motor “miraculoso” alimentaria
+um refrigerador comum, e o resultado líquido seria calor passando do frio para o quente sem
+trabalho externo, violando C. Logo, violar um é violar o outro.
+
+2.2 Princípio e ciclo de Carnot
+
+Teorema 2.2.1 — Princípio de Carnot Nenhum motor operando entre TH e TC é mais eficiente
+que um motor reversível operando entre as mesmas temperaturas:
+
+                                         equalquer ≤ ereversível = eCarnot.
+
+Demonstração. Suponha um motor I com eI > eR e acople-o a um motor reversível R funcionando
+
+como refrigerador, com o trabalho de I alimentando R (W ′ = W ). Fazendo o balanço de energia nas
+
+fontes, a fonte quente recebe calor líquido Q1liq > 0 e a fria recebe Q2liq = −Q1liq < 0 (isto é, perde calor),
+
+sem trabalho externo. Isso viola C. Portanto eI ≤ eR.                                            ■
+
+Proposição 2.2.2 — Ciclo de Carnot com gás ideal O ciclo reversível é formado por
+duas isotermas e duas adiabáticas (Figura 2.2). Nas isotermas ∆U = 0, então Q1 = nRT1 ln(Vb/Va)
+e Q2 = nRT2 ln(Vc/Vd). Nas adiabáticas,
+
+           γ −1                     γ −1               γ −1  γ −1
+   T1Vb = T2Vc e T1Va = T2Vd ,
+
+o que dá Vb/Va = Vc/Vd. Assim,
+
+Q2 = T2 ,                        eCarnot = 1 − TC ,    erefrig,Carnot = TC .        (2.3)
+Q1 T1                                            TH                     TH − TC
+
+É o rendimento máximo possível, e só depende das temperaturas absolutas. Tenderia a 1 apenas
+com TC → 0 ou TH → ∞.
+12                              Capítulo 2. Entropia, Segunda e Terceira Leis
+
+                            a
+
+              P                T1: recebe Q1
+                                   b
+
+                 adiabática                   adiabática b → c
+                   d→a
+
+                                d
+
+                                              T2: rejeita Q2     c
+
+                                   V
+
+Figura 2.2: Ciclo de Carnot (gás monoatômico, T1 = 2T2) percorrido em a → b → c → d → a, no sentido horário:
+expansão isotérmica, expansão adiabática, compressão isotérmica e compressão adiabática. A área interna é W .
+
+■ Exemplo 2.2.3 — Limites de Carnot Um motor opera entre 500 K e 300 K. Qual o rendimento
+máximo? E o coeficiente máximo de um refrigerador entre as mesmas fontes?
+
+Solução. emáx = 1 − 300/500 = 0,40 e erefrig,máx = 300/(500 − 300) = 1,5. Um motor real, com atrito
+
+e diferenças finitas de temperatura, tem e < 0,40. Isolar bem o motor não remove as irreversibilidades
+
+internas.                                                                                           ■
+
+2.3 Entropia
+
+2.3.1 A função de estado por trás do ciclo de Carnot
+
+          Deixando os sinais abertos (o sinal vem do cálculo, com Q2 < 0 no motor), (2.3) vira Q1/T1 + Q2/T2 = 0.
+          Qualquer ciclo reversível pode ser decomposto em infinitos ciclos de Carnot infinitesimais; somando,
+
+                                                                   δ Qrev = 0.
+                                                                      T
+
+          Integral cíclica nula é a marca de uma diferencial exata.
+
+Definição 2.3.1 — Entropia
+
+                 dS = δ Qrev ,  ∆S = S2 − S1 =  2 δ Qrev      .     (2.4)
+                          T
+                                                1T
+
+S é função de estado: para um processo irreversível, calcula-se ∆S por qualquer caminho reversível
+que ligue os mesmos estados.
+2.3 Entropia                                                                      13
+
+■ Exemplo 2.3.2 — Q depende do caminho, ∆S não Leve um gás ideal de (P1,V1, T1) a
+(P2,V2, T1) por (A) uma isoterma, ou (B+C) uma adiabática até T2 seguida de aquecimento isocórico até
+T1.
+
+Solução. Por A: QA = nRT1 ln(V2/V1). Por B+C: Q = T2T1 CV dT , que é outro valor, porque o calor
+depende do caminho. Mas em ambos os caminhos ∆S = nR ln(V2/V1), como deve ser para uma função
+
+de estado.                                                                               ■
+
+2.3.2 Cálculo de ∆S
+
+Proposição 2.3.3 — Casos usuais
+
+              mudança de fase (T, P ctes):  ∆S = ∆Htrs                            (2.5)
+              aquecimento a P (ou V ) cte:          Ttrs                          (2.6)
+              gás ideal, T cte:                                                   (2.7)
+              gás ideal, geral:             T2 ∆S = CP dT ou          CV dT       (2.8)
+                                                    T1 T              T
+
+                                            ∆S = nR ln V2 = −nR ln P2
+                                                          V1          P1
+
+                                            ∆S = nCV ln T2 + nR ln V2
+                                                          T1          V1
+
+Com C constante, C dT /T = C ln(T2/T1).
+
+■ Exemplo 2.3.4 — Fusão do gelo Calcule ∆S para fundir 10,0 g de gelo a 273,15 K e 1 atm
+(∆Hfus = 333,5 J g−1).
+
+Solução. ∆H = 10,0 × 333,5 = 3335 J e ∆S = 3335/273,15 = 12,2 J K−1.                     ■
+
+■ Exemplo 2.3.5 — Aquecimento da água Calcule ∆S ao aquecer 100,0 g de água de 25 ◦C a
+50 ◦C, com cP = 1,0 cal g−1 K−1 constante.
+
+Solução. ∆S = mcP ln(T2/T1) = 100 ln(323,15/298,15) = 8,05 cal K−1 = 33,7 J K−1.         ■
+
+■ Exemplo 2.3.6 — CV dependente de T Um sólido tem CV = 15 + 0,020 T (J mol−1 K−1).
+Calcule ∆S ao aquecer 3,0 mol de 150 K a 300 K a volume constante.
+
+Solução. ∆S = n (15/T + 0,020) dT = n 15 ln 2 + 0,020 × 150 = 3,0 (10,40 + 3,00) = 40,2 J K−1. ■
+        14                               Capítulo 2. Entropia, Segunda e Terceira Leis
+
+2.4 Processos irreversíveis
+
+Proposição 2.4.1 — Entropia de mistura de gases ideais Dois gases ideais diferentes, à
+mesma T e P, se misturam num recipiente adiabático. Cada um se expande isotermicamente até o
+volume total, e com Vi/V = xi:
+
+                             V           V
+∆Smis = nAR ln VA + nBR ln VB = −R (nA ln xA + nB ln xB) ≥ 0.                            (2.9)
+
+Para 1 + 1 mol, ∆Smis = 2R ln 2 = 11,5 J K−1. Se os gases são idênticos, nada muda (∆S = 0). A
+mistura não se desfaz sozinha: é irreversível.
+
+■ Exemplo 2.4.2 — Mistura assimétrica Calcule ∆Smis para 1,0 mol de A e 3,0 mol de B, à mesma
+T e P.
+
+Solução. Com xA = 0,25 e xB = 0,75: ∆S = −R(ln 0,25 + 3 ln 0,75) = 2,249R = 18,7 J K−1.             ■
+
+Proposição 2.4.3 — Fluxo de calor aumenta a entropia Num sistema isolado, os
+
+subsistemas A e B trocam calor por uma parede rígida e diatérmica. Como dUA = TA dSA,
+
+dUB = TB dSB e dUA = − dUB,                   11
+                                dS = dUB − > 0
+
+                                             TB TA
+
+nos dois sentidos possíveis: se TB > TA, então dUB < 0; se TA > TB, então dUB > 0. Calor só flui
+
+do quente para o frio porque isso aumenta S. Diferenças finitas de temperatura geram entropia.
+
+Observação 2.4.4 No slide “Entropia e espontaneidade” (aula 3) aparece dUB = TA dSB. O
+correto é dUB = TB dSB: cada subsistema usa a própria temperatura.
+
+Teorema 2.4.5 — Desigualdade de Clausius Escrevendo dS = dSprod + dStroc, com
+dStroc = δ Q/T e dSprod ≥ 0 (igual a zero só se o processo é reversível):
+
+                             dS ≥ δ Q ,     ∆S ≥ δ Q .                                   (2.10)
+                                     T                 T
+
+Num sistema isolado (δ Q = 0), ∆S ≥ 0: a entropia cresce até o equilíbrio e então para. A entropia
+do universo não se conserva.
+
+Armadilhas comuns. (i) ∆S = Q/T só para calor trocado reversivelmente. (ii) Numa adiabática
+irreversível, Q = 0 mas ∆Ssistema > 0. (iii) Em um ciclo irreversível, δ Q/T < 0; só o ciclo
+reversível dá zero. (iv) Etapas reversíveis não “compensam” irreversibilidades: Sprod nunca é
+negativo. (v) No motor, ∆Smotor = 0 por ciclo (função de estado). Reversível: |QC|/TC = QH/TH e
+e = eCarnot. Irreversível: |QC|/TC > QH /TH e e < eCarnot.
+2.5 Multiplicidade                                                                      15
+
+2.5 Multiplicidade
+
+Definição 2.5.1 — Micro e macroestado, multiplicidade Microestado: a descrição
+completa da configuração microscópica. Macroestado: uma descrição grosseira, por exemplo
+“quantas partículas há em cada recipiente”. Multiplicidade Ω: o número de microestados
+compatíveis com um macroestado. Para subsistemas que interagem,
+
+                                                Ωtotal = ΩA × ΩB.
+
+Hipóteses: todos os microestados acessíveis são equiprováveis e as transições entre eles são
+aleatórias. Logo, o macroestado mais provável é o de maior Ω.
+
+Proposição 2.5.2 — Bolas e urnas / sólido de Einstein O número de modos de distribuir
+q objetos indistinguíveis em N caixas distinguíveis é
+
+                                 Ω(N, q) = q + N − 1 = (q + N − 1)! .                   (2.11)
+                                             q  q! (N − 1)!
+
+Basta escolher quais q dos q + N − 1 símbolos da fila ◦| ◦ ◦||◦ são bolas. No sólido de Einstein,
+as caixas são N osciladores harmônicos e as bolas são q quanta de energia (U = q hν). Ali o
+microestado é conhecido: basta dizer quantos quanta tem cada oscilador. Para partículas livres em
+compartimentos, seriam necessárias também posições e momentos.
+
+■ Exemplo 2.5.3 — Dois recipientes, seis átomos Dois recipientes com 3 compartimentos cada
+contêm 6 átomos de He indistinguíveis. Qual a multiplicidade total e a probabilidade de encontrar 3
+átomos em cada recipiente?
+
+Solução.  Para r1 = 3, r2 = 3: Ω1 = Ω2 =  5  = 10, logo Ω = 100. Somando todos os macroestados
+                                          3
+                             11
+r1 = 0, . . . , 6: Ωtotal =  6   = 462. A probabilidade é P(3, 3) = 100/462 ≈ 0,22. É o macroestado mais
+
+provável, mas ainda longe da certeza, porque o sistema é pequeno.                                  ■
+
+■ Exemplo 2.5.4 — Sólidos pequenos Considere o sólido A com NA = 4 osciladores e qA = 3
+quanta, e o sólido B com NB = 3 osciladores e qB = 2 quanta. Calcule ΩA, ΩB e Ωtotal.
+
+Solução.  ΩA =  6   = 20, ΩB =   4  = 6 e Ωtotal = 20 × 6 = 120 (produto, nunca soma).             ■
+                3                2
+
+Observação 2.5.5 Na Figura 2.3, os macroestados qA = 59 a 61 somam ≈ 22%. O slide (e a
+aula gravada) diz que qA entre 40 e 60 somam ≈ 100%, mas esse intervalo cobre só metade do pico
+(≈ 53%). O intervalo que soma ≈ 100% é 40 ≤ qA ≤ 80.
+16                                                           Capítulo 2. Entropia, Segunda e Terceira Leis
+
+                                             6probabilidade (%)
+
+                                             4
+
+                                             2
+
+                                             0
+                                               0 10 20 30 40 50 60 70 80 90 100
+                                                                                qA
+
+               Figura 2.3: Dois sólidos de Einstein acoplados (NA = 300, NB = 200, q = 100): probabilidade de cada
+          macroestado qA, calculada exatamente com (2.11). O pico fica em qA = 60, energia proporcional ao número de
+
+                                                     osciladores. Ω(60)/Ω(0) ≈ 2,5 × 1033.
+
+2.6 Entropia estatística e temperatura
+
+Proposição 2.6.1 — Limite de números grandes Para q ≫ N, a fórmula de Stirling
+
+(ln N! ≈ N ln N − N) dá
+
+                                                          Ω(N, q) ≈  eq N  .                                    (2.12)
+
+                                                                       N
+
+Para dois sólidos iguais, o máximo de ΩAΩB fica em qA = q/2 e, perto dele, Ω = Ωmax e−N(2x/q)2:
+                                                                  √
+uma  gaussiana  que                cai  a  Ωmax/e  em  x  =  q/(2 N).  Com    q  =  1030  e  N  =  1020,  x  ∼  5 × 1019,  ou
+                                                                                    √
+seja, uma parte em 20 bilhões. As flutuações relativas (∼ 1/ N) são imensuráveis: é o limite
+
+termodinâmico.
+
+Definição 2.6.2 — Entropia de Boltzmann                                                                         (2.13)
+                                                    S = kB ln Ω.
+
+O logaritmo domestica números como 101023 e torna S aditiva: kB ln(ΩAΩB) = SA + SB.
+
+Lei 2.6.3 — Segunda Lei (forma estatística) Em um sistema isolado, a multiplicidade
+(e portanto a entropia) não diminui e atinge o máximo no equilíbrio. A irreversibilidade (“seta
+do tempo”) é estatística. Na expansão livre, ∆S = NkB ln(Vf /Vi) > 0. O gás voltar sozinho a
+uma metade do recipiente não é impossível, só astronomicamente improvável. Em sistemas muito
+pequenos, quedas transitórias de S podem ocorrer.
+2.7 Terceira Lei                                                                              17
+
+Definição 2.6.4 — Temperatura No equilíbrio entre A e B, ∂ Stotal/∂UA = 0 e, como
+dUA = − dUB, ∂ SA/∂UA = ∂ SB/∂UB. A grandeza que se iguala é
+
+                                              1 = ∂S .                                        (2.14)
+                                              T         ∂U V,N
+
+É T = (∂ S/∂U)−1, e não a própria inclinação ∂ S/∂U (que diminui), que tem o comportamento
+esperado: cresce quando o corpo ganha energia.
+
+Observação 2.6.5 — Temperaturas negativas Nada proíbe C < 0 (sistemas ligados pela
+gravidade, como estrelas). Se a energia tem um teto e há inversão de população (spins num campo,
+lasers), S(U) pode decrescer e T < 0. Um sistema a T < 0 é “mais quente” que qualquer um a
+T > 0 (cede energia a ele) e não viola a Segunda Lei. Em sistemas grandes e usuais, T > 0.
+
+Teorema 2.6.6 — Equação de Sackur-Tetrode Contando os estados de posição (∝ V ) e
+                                              √
+
+de momento (uma hiperesfera de raio 2mU em 3N dimensões), com células ∆x∆p = h e o fator
+1/N! para partículas idênticas, o gás ideal monoatômico tem
+
+                                                        V 4πmU 3/2 5
+                                  S(U,V, N) = NkB ln                          +.              (2.15)
+                                                        N 3Nh      2            2
+
+■ Exemplo 2.6.7 — O que sai de Sackur-Tetrode Obtenha U(T ) e (∂ S/∂V )U,N.
+
+Solução.  Só o termo  3  N  k  B  ln  U  depende de U, então
+                      2
+
+                           1 = ∂ S = 3 NkB , ou seja, U = 3 NkBT = 3 nRT.
+                           T ∂U 2 U                                   2            2
+
+Do termo NkB lnV : (∂ S/∂V )U,N = NkB/V = P/T . Para 2 mol de Ar a 300 K,
+
+                                          U = 3 · 2 · 8,314 · 300 = 7,48 kJ,
+                                                2
+
+independentemente de V . Para uma diatômica sem vibração ( f = 5), U = 52 nRT .                       ■
+
+2.7 Terceira Lei
+
+Lei 2.7.1 — Terceira Lei (Nernst–Planck) Nernst: para substâncias puras em equilíbrio,
+∆S → 0 quando T → 0. Planck: para um cristal perfeito com estado fundamental não degenerado,
+S(0) = kB ln 1 = 0.
+
+    Com S(0) = 0, a entropia passa a ter valor absoluto. Para que a integral convirja, CP → 0 quando
+T → 0. Somando aquecimentos e mudanças de fase:
+
+                               Tfus Csól      ∆fusH     Tvap Clíq        ∆vapH        T Cgás
+                  S(T ) =             P dT +         +        P dT +            +     P dT.   (2.16)
+                            0T                Tfus      Tfus T           Tvap         Tvap T
+
+Num gráfico S × T (por exemplo, para o N2) há trechos crescentes e saltos verticais em cada transição,
+incluindo transições sólido-sólido.
+18                                          Capítulo 2. Entropia, Segunda e Terceira Leis
+
+Observação 2.7.2 — Entropia residual Defeitos, impurezas ou desordem congelada
+
+(orientações dos H no gelo Ih, presas por barreiras cinéticas) deixam S(0+) = S0 > 0. Para o
+
+gelo,  Pauling  estimou  S0  ≈  R ln  3  =  3,4 J mol−1  K−1.  O  gelo  ordenado  (gelo  XI)  só  se  forma  com
+                                      2
+
+dopagem por KOH, por volta de 72 K. Isso não viola a Terceira Lei: aquele sólido simplesmente
+
+não é o “cristal perfeito” do enunciado. Se a calorimetria supuser S(0) = 0, a entropia absoluta
+
+sai subestimada de S0. Outra consequência: o zero absoluto é inatingível em um número finito de
+
+etapas.
+
+2.8 Exercícios resolvidos
+
+■ Exemplo 2.8.1 — Afirmações sobre entropia Julgue: (a) “a P constante, o calor trocado é
+igual a ∆S”; (b) “num processo adiabático irreversível, S muda”.
+
+Solução. (a) Falsa: a P constante, Q = ∆H. Para um processo reversível, ∆S = Qrev/T , e as dimensões
+
+nem batem. (b) Verdadeira: δ Q = 0, mas dSprod > 0, logo ∆S > 0.                                                  ■
+Capítulo 3
+
+Potenciais termodinâmicos
+e equilíbrio
+
+Com as três leis, a termodinâmica pode ser organizada a partir de uma única equação fundamental.
+Transformadas de Legendre trocam suas variáveis por outras mais convenientes, como T e P, que se
+controlam no laboratório. Isso gera os potenciais A, H e G, as relações de Maxwell e, por fim, os critérios
+de equilíbrio de fases, misturas e reações.
+
+3.1 A equação fundamental
+
+Definição 3.1.1 — Equação fundamental; extensivos e intensivos O estado de
+equilíbrio de um sistema é descrito por
+
+            S = S(U,V, N1, . . . , Nk) ou U = U(S,V, N1, . . . , Nk).
+
+Essas são as formas completas: delas sai tudo. Seus argumentos são extensivos (dobram quando o
+sistema dobra). T , P e µ são intensivos e aparecem como derivadas:
+
+                           dU = T dS − P dV + ∑ µ j dNj,                    (3.1)
+
+                                 j
+
+T = ∂U ,                   −P = ∂U ,             µj = ∂U .
+        ∂ S V,N                      ∂V S,N               ∂ N j S,V,Ni̸= j
+
+Para N fixo, dU = T dS − P dV junta a Primeira e a Segunda Lei (δ Qrev = T dS, δWrev = −P dV ).
+Na representação entrópica,
+
+                           dS = 1 dU + P dV − ∑ µ j dNj. (3.2)
+                           T  T              jT
+20                  Capítulo 3. Potenciais termodinâmicos e equilíbrio
+
+Proposição 3.1.2 — Homogeneidade e relação de Euler A equação fundamental é
+
+homogênea de primeira ordem, U(λ S, λV, λ N) = λU, e as equações de estado (T , P, µ) são
+
+homogêneas de ordem zero. Com λ = 1/N obtêm-se grandezas molares. Derivando em λ e
+
+tomando λ = 1:  U = T S − PV + ∑ µ jNj, S = U + PV − ∑ µ jNj . (3.3)
+
+                    j                        T T jT
+
+É uma relação entre as próprias grandezas, não entre suas variações.
+
+Observação 3.1.3 — Completude Da equação fundamental saem todas as equações de
+estado. A recíproca só vale com todas as equações de estado: PV = nRT sozinha não fornece
+S. Funções como U(T,V ) são úteis, mas não são completas, porque T e V não são as variáveis
+naturais de U (os coeficientes de dU(T,V ), como CV , não são funções termodinâmicas simples).
+
+Lei 3.1.4 — Princípio de extremo (S) Num sistema isolado (U, V , N fixos), o equilíbrio
+maximiza S; a entropia total pode crescer.
+(U) Com S, V , N fixos, o equilíbrio minimiza U. A energia do universo, porém, se conserva: num
+sistema isolado, U é constante (não “minimiza”).
+
+3.2 Transformadas de Legendre e espontaneidade
+
+           Proposição 3.2.1 — Transformada de Legendre Seja Y (X) com inclinação P = dY / dX.
+           A reta tangente corta o eixo Y em Ψ = Y − PX, e dΨ = −X dP. Assim Ψ(P) guarda a mesma
+           informação que Y (X), mas tem como variável a derivada. No caso geral, Ψ = Y − ∑k PkXk.
+
+Definição 3.2.2 — Helmholtz, entalpia e Gibbs Transformando U(S,V, N):
+
+    A = F = U − T S,                         dA = −S dT − P dV + ∑ µ j dNj, (3.4)
+         H = U + PV,
+         G = U − T S + PV = H − T S,         dH = T dS +V dP + ∑ µ j dNj,              (3.5)
+
+                                             dG = −S dT +V dP + ∑ µ j dNj. (3.6)
+
+As variáveis naturais são A(T,V, N), H(S, P, N) e G(T, P, N). O termo µ dN não é transformado.
+
+Proposição 3.2.3 — Derivadas dos potenciais
+
+    U(S,V )         H(S, P)           A(T,V )           G(T, P)
+
+    (∂U/∂ S)V = T   (∂ H/∂ S)P = T    (∂ A/∂ T )V = −S  (∂ G/∂ T )P = −S
+    (∂U/∂V )S = −P  (∂ H/∂ P)S = V    (∂ A/∂V )T = −P   (∂ G/∂ P)T = V
+
+Em todos os potenciais, ∂ (·)/∂ Nj = µ j, mantidas as respectivas variáveis naturais.
+3.3 Relações de Maxwell                                                          21
+
+Teorema 3.2.4 — Critérios de espontaneidade Combinando a Primeira Lei com a
+desigualdade de Clausius, T dS ≥ dU + P dV . Logo:
+
+        T,V ctes: dA ≤ 0,                ∆A = ∆U − T ∆S (= Wrev),
+        T, P ctes: dG ≤ 0,               ∆G = ∆H − T ∆S.
+
+O sinal < vale para processos espontâneos e o = no equilíbrio. Resumo dos critérios de equilíbrio:
+
+                         restrições fixas                  no equilíbrio
+
+                         U,V, N (isolado)                  S máxima
+                         S,V, N                            U mínima
+                         T,V, N (termostato)               A mínima
+                         T, P, N (termostato + barostato)  G mínima
+
+Na química (reações abertas à atmosfera), o critério usado é ∆G < 0.
+
+■ Exemplo 3.2.5 — Vaporização do etanol fora do ponto de ebulição O etanol ferve a
+Tb = 78,3 ◦C = 351,45 K com ∆vapH = 38,6 kJ mol−1. Supondo ∆H e ∆S constantes, calcule ∆vapG a
+70,0 ◦C e a 85,0 ◦C.
+
+Solução. No ponto de ebulição, ∆G = 0, então ∆S = ∆H/Tb e
+
+                                     ∆H                          T
+                         ∆vapG(T ) = ∆H − T = ∆H 1 − .
+                                     Tb                          Tb
+
+Assim,
+
+        a 343,15 K: ∆G = 38,6 (1 − 0,9764) = +0,91 kJ mol−1 (não espontânea).
+        a 358,15 K: ∆G = −0,74 kJ mol−1 (espontânea).
+
+Em Tb as duas fases têm o mesmo G molar e coexistem, com dNvapor = − dNlíquido.                     ■
+
+3.3 Relações de Maxwell
+
+Teorema 3.3.1 — Relações de Maxwell Pela igualdade das derivadas cruzadas (1.6) aplicada
+a cada potencial:
+
+        U : ∂T = − ∂P , H : ∂T = ∂V ,
+                         ∂V S  ∂S V                        ∂P S ∂S P
+                                                                                 (3.7)
+        A : ∂S = ∂P , G : ∂S = − ∂V .
+                         ∂V T ∂T V                         ∂P T       ∂T P
+
+Estratégia: escolha o potencial cujas variáveis naturais são as controladas no experimento e use a
+relação de Maxwell para trocar uma derivada de S (que não se mede) por derivadas de P, V e T
+(que se medem).
+22                              Capítulo 3. Potenciais termodinâmicos e equilíbrio
+
+Proposição 3.3.2 — Aplicações
+  (a) Entropia × volume ou pressão a T constante: ∆S = (∂ P/∂ T )V dV e ∆S = − (∂V /∂ T )P dP.
+       Para o gás ideal, ∆S = nR ln(V2/V1) = −nR ln(P2/P1).
+
+  (b) Pressão interna: de A = U − T S, derivando em V a T fixo e usando Maxwell,
+
+              ∂U = T ∂ P − P = T α − P. (3.8)
+              ∂V T                              ∂T V            κ
+
+    No gás ideal, T · nR/V − P = 0, o que confirma U = U(T ).
+
+    (c) dU só com grandezas mensuráveis: dU = CV dT + T (∂ P/∂ T )V − P dV .
+
+    (d) CP −CV : com U(T, P), U(T,V ) e V (T, P) obtém-se CP −CV = P + (∂U/∂V )T (∂V /∂ T )P
+
+         e, com (3.8),
+                                                      α2TV
+
+                                        CP −CV = κ (gás ideal: nR). (3.9)
+
+■ Exemplo 3.3.3 — Correção de pressão da entropia O vapor de uma substância a 298,15 K
+tem S = 200 J K−1 mol−1 a 0,050 bar. Supondo gás ideal, qual a entropia molar padrão (1 bar)?
+Solução. Por Maxwell, (∂ S/∂ P)T = −(∂V /∂ T )P = −R/P, logo
+
+                                   ∆S = −R ln(1/0,050) = −24,9 J K−1 mol−1
+e S◦ = 200 − 24,9 = 175 J K−1 mol−1. Comprimir o gás reduz S, porque o volume acessível diminui. ■
+
+■ Exemplo 3.3.4 — CP − CV de um metal Para o cobre a 298,15 K: α = 5,0 × 10−5 K−1, κ =
+7,3 × 10−12 Pa−1, M = 63,55 g mol−1, ρ = 8,96 g cm−3 e CP = 24,4 J mol−1 K−1. Ache V e CV .
+
+Solução. V = M/ρ = 7,09 cm3 mol−1 = 7,09 × 10−6 m3 mol−1. Então
+
+    CP −CV =  (5,0 × 10−5)2 · 298,15 · 7,09 × 10−6                 −1 −1
+                                                                = 0,72 J mol K ,
+                                7,3 × 10        −12
+
+e CV ≈ 23,7 J mol−1 K−1. Num sólido a diferença é pequena porque ele quase não expande, enquanto no
+gás ideal ela vale R = 8,3. Atenção às unidades: κ em Pa−1 e V em m3, para o resultado sair em J. ■
+
+3.4 Equação de Gibbs-Helmholtz
+
+Teorema 3.4.1 — Gibbs-Helmholtz Derivando G/T = H/T − S a P constante e usando
+(∂ S/∂ T )P = CP/T e (∂ H/∂ T )P = CP:
+
+    ∂ (G/T )                          H              ∂ (∆G/T )       ∆H           (3.10)
+                                =− 2,                           =− 2.
+              ∂T P T                                  ∂T P T
+
+Com ∆H constante no intervalo, integrando:
+
+              ∆G(T2) = ∆G(T1) + ∆H 1 − 1 .                                        (3.11)
+              T2                            T1        T2 T1
+3.5 Potencial químico e Gibbs-Duhem                                                     23
+
+■ Exemplo 3.4.2 — ∆ f G da amônia a outra temperatura Para NH3(g), ∆ f G◦298 =
+−16,45 kJ mol−1 e ∆ f H◦ = −45,90 kJ mol−1 (suposta constante). Estime ∆ f G a 350 K.
+
+Solução. Por (3.11), ∆G350 = 350 − 16,45/298,15 − 45,90 (1/350 − 1/298,15) = −11,3 kJ mol−1. A
+
+formação fica menos favorável ao aquecer, como se espera de uma reação exotérmica com ∆S < 0. É o
+
+mesmo que supor ∆H e ∆S constantes em ∆G = ∆H − T ∆S.                                                        ■
+
+3.5 Potencial químico e Gibbs-Duhem
+
+Proposição 3.5.1 — G e µ Substituindo a relação de Euler (3.3) em G = U − T S + PV :
+
+G = ∑µjNj,                             G                                                (3.12)
+            substância pura: G = N = µ.
+         j
+
+O potencial químico é a energia de Gibbs molar, a grandeza que “empurra” as partículas de uma
+fase ou espécie para outra.
+
+Teorema 3.5.2 — Gibbs-Duhem Diferenciando (3.3) e subtraindo (3.1):
+
+S dT −V dP + ∑ Nj dµ j = 0,          ∑ Nj dµ j = 0 (T, P ctes).                         (3.13)
+
+                          j           j
+
+Numa mistura, os potenciais químicos não variam de forma independente.
+
+Observação 3.5.3 No slide “Equação Gibbs-Duhem” (aula 6) lê-se “substituindo (37) em (35)”.
+O correto é substituir (3.1) na diferencial de Euler, isto é, (37) em (36).
+
+3.6 Estabilidade e transições de fase
+
+           Proposição 3.6.1 — Estabilidade No equilíbrio de um sistema isolado, dS = 0 e d2S < 0
+           (máximo). Para G a T, P fixos, dG = 0 e d2G > 0 (mínimo). Pode haver vários mínimos locais, e as
+           derivadas do potencial funcionam como “forças restauradoras” contra flutuações (como − dU/ dx
+           numa mola).
+
+Proposição 3.6.2 — Equilíbrio de fases Num sistema fechado a T, P constantes, dG =
+µ(1) dN(1) + µ(2) dN(2) = 0 com dN(2) = − dN(1)̸ = 0. Logo
+
+            µ(1) = µ(2).                                                                (3.14)
+
+O equilíbrio é dinâmico: partículas continuam trocando de fase, mas sem fluxo líquido.
+24                            Capítulo 3. Potenciais termodinâmicos e equilíbrio
+
+Observação 3.6.3 O slide “Potencial químico na transição de fase” fala em “sistema isolado
+com 2 substâncias” e usa dG a T, P fixos. A situação correta é uma substância em duas fases, num
+sistema fechado a T e P constantes.
+
+Definição 3.6.4 — Diagrama de fases e regra das fases Num diagrama P × T de uma
+substância pura, as linhas são coexistência de duas fases (curvas de pressão de vapor e de fusão), o
+ponto triplo é a coexistência de três fases e o ponto crítico encerra a linha líquido-vapor (acima
+dele, fluido supercrítico). A linha sólido-líquido não tem ponto crítico. Os graus de liberdade são
+
+                                    f = 3 − p (p = número de fases),
+
+ou seja, 2 numa região, 1 sobre uma linha e 0 no ponto triplo.
+
+    T < Tb
+    T = Tb
+    T > Tb
+
+G                                                                                   sólido  inclinação = −S
+                                                                               G=µ
+
+    líquido            vapor                                                                          líquido
+
+                    V                                                                       Tfus
+                                                                                            T
+
+    Figura 3.1: Esquerda: G ×V ao cruzar a linha líquido-vapor. Em Tb os dois mínimos têm a mesma altura
+(coexistência); fora dela, o mínimo mais raso explica o vapor super-resfriado e o líquido superaquecido. Direita:
+
+ µ × T perto da fusão. As curvas se cruzam (µsól = µlíq), mas a do líquido é mais íngreme: Slíq > Ssól. A fase
+                                             estável é a de menor µ (traço cheio).
+
+Proposição 3.6.5 — Transição de primeira ordem e calor latente Na transição, µ
+(= G) é contínuo, mas V , S, U, H e A saltam. Como (∂ G/∂ T )P = −S, o salto de inclinação é o
+salto de entropia (Figura 3.1). Com H = T S + µ (Euler, por mol):
+
+                              L = T ∆trsS = ∆trsH.                                                             (3.15)
+
+3.7 Misturas e soluções                                                                                        (3.16)
+
+           Proposição 3.7.1 — µ de um gás ideal Integrando (∂ G/∂ P)T = V = RT /P:
+                                 µ(T, P) = µ◦(T ) + RT ln P◦ P , P◦ = 1 bar (estado padrão).
+3.7 Misturas e soluções                                                                                                     25
+
+Proposição 3.7.2 — Líquido em equilíbrio com o vapor Em cada componente,
+µ jlíq = µ jvap = µ◦j + RT ln Pj. Para o líquido puro (∗), µ∗j = µ◦j + RT ln Pj∗. Subtraindo:
+
+                                          µ jlíq = µ j∗ + RT ln ∗ Pj .                                            (3.17)
+                                                               Pj
+
+Medindo pressões de vapor, obtém-se o potencial químico no líquido.
+
+Lei 3.7.3 — Raoult (solução ideal)
+
+          Pj = x jPj∗,  P = ∑ x jPj∗ (Dalton),       y j = Pj (composição do vapor),                              (3.18)
+                                                           P
+                                 j
+
+e µ j = µ∗j + RT ln x j. Vale quando as interações entre moléculas diferentes equivalem às interações
+entre moléculas iguais (benzeno-tolueno, 1- e 2-propanol). Em soluções reais, vale para o
+
+componente em excesso (x j → 1).
+
+■ Exemplo 3.7.4 — Benzeno + tolueno a 25 ◦C                    Com  P∗      =  95,1  torr,  P∗     =  28,4  torr  e  xbenz     =
+
+                                                                      benz                    tol
+
+0,40, ache P e a composição do vapor.
+
+Solução. Pbenz = 0,40 × 95,1 = 38,0 e Ptol = 0,60 × 28,4 = 17,0, logo P = 55,1 torr. No vapor, ybenz =
+
+38,0/55,1 = 0,69 e ytol = 0,31: o vapor é mais rico no componente mais volátil.                                                ■
+
+Lei 3.7.5 — Henry (soluto diluído) Quando x j → 0, Pj → x jKH, j, onde KH, j é a inclinação
+da tangente a Pj(x j) em x j = 0. Em geral KH̸ = P∗.
+
+Definição 3.7.6 — Atividade               Para       soluções  não  ideais,    escreve-se   µj     =  µ  ∗  +  RT    ln  a  j
+                                                                                                         j
+
+(referência de Raoult), com
+
+                Pj                            (referência de Raoult: a j → x j quando x j → 1),
+          aj = ∗ = γjxj                       (referência de Henry: a j → x j quando x j → 0).
+
+                Pj
+          a j = Pj
+
+                KH, j
+
+Na referência de Henry o estado de referência muda: µ j = µ∗j + RT ln(KH, j/Pj∗) + RT ln a j. γ j é o
+coeficiente de atividade (experimental). Na escala de Henry também se usam molalidade (a → m) e
+
+concentração (a → c).
+
+■ Exemplo 3.7.7 — Mistura binária não ideal A pressão de vapor do componente 1 é P1 =
+80 x1 e0,30x22+0,05x23 (torr). Ache P1∗, KH,1 e, para x1 = 0,25, a atividade e o coeficiente de atividade
+
+(referência de Raoult).
+
+Solução.  Puro (x1 = 1, x2 = 0):  P∗   =  80  torr.  Diluído (x1 → 0, x2 → 1):  P1/x1 → 80 e0,35, logo KH,1 =
+
+                                    1
+
+114 torr. Para x1 = 0,25: P1 = 80(0,25)e0,30(0,5625)+0,05(0,4219) = 24,2 torr, então a1 = 24,2/80 = 0,30 e
+
+γ1 = a1/x1 = 1,21 (desvio positivo de Raoult; ver Figura 3.2).                                                                 ■
+26                                  Capítulo 3. Potenciais termodinâmicos e equilíbrio
+
+             P1 (torr)  100
+                                         P1 real
+
+                         80 Raoult x1P1∗
+                                         Henry x1KH,1
+
+                         60
+
+                        40
+
+                        20
+
+                        0
+
+                            0  0,2                     0,4      0,6  0,8  1
+
+                                                            x1
+
+Figura 3.2: Pressão parcial do Exemplo 3.7.7. Perto de x1 = 1 a curva real cola em Raoult; perto de x1 = 0, na reta
+                                            de Henry (inclinação KH,1 = 114 torr).
+
+3.8 Reações químicas
+
+Definição 3.8.1 — Extensão da reação Para νAA + νBB ⇌ νCC + νDD:
+              NA = NA0 − νAξ , NB = NB0 − νBξ , NC = NC0 + νCξ , ND = ND0 + νDξ ,
+
+com dNj = ±ν j dξ . O valor máximo de ξ é fixado pelo reagente limitante.
+
+■ Exemplo 3.8.2 — Extensão máxima Para 2A + B ⇌ 4C + 2D, partindo de 2 mol de A e 1 mol
+de B, ache ξmax e os produtos.
+
+Solução. 2 − 2ξ = 0 e 1 − ξ = 0 dão ξmax = 1 mol (proporção estequiométrica), logo NC = 4 mol e
+
+ND = 2 mol.                                                                                       ■
+
+Teorema 3.8.3 — ∆rG, quociente e constante de equilíbrio A T, P constantes, dG =
+∑ µ j dNj, então
+
+    ∆rG ≡    ∂ G = νCµC + νDµD − νAµA − νBµB = ∆rG◦ + RT ln Q,                  PνC PνD
+             ∂ ξ T,P                                                      Q = νA νB C D . (3.19)
+
+                                                                                PA PB
+
+No equilíbrio (G mínimo em ξ ), ∆rG = 0 e
+
+                               ∆rG◦ = −RT ln KP, KP = e−∆rG◦/RT .                  (3.20)
+
+Em solução, usam-se concentrações (atividades) no lugar de pressões. Com ∆rG < 0 a reação
+avança (Q < K); com ∆rG > 0 ela recua.
+3.9 Exercícios resolvidos                                                                                                                   27
+
+    Definição 3.8.4 — Grandezas padrão de formação Como µ é uma energia, é preciso
+    um zero. Escolhe-se ∆ f G◦ = ∆ f H◦ = ∆ f S◦ = 0 para os elementos na forma mais estável a 1 bar
+    (H2(g), O2(g), He. . . ). Então
+
+                   ∆rX ◦ =  ∑     ν  j∆  f  X  ◦  −  ∑     ν  j∆  f  X  ◦  (X = G, H),     ∆rG◦ = ∆rH◦ − T ∆rS◦,
+                                               j                        j
+
+                            prod                     reag
+
+    sendo ∆rS◦ calculado com as entropias absolutas S◦ (Terceira Lei).
+
+■ Exemplo 3.8.5 — Formação da água líquida a 298,15 K Com ∆ f H◦ = −285,8 kJ mol−1 e
+
+S◦  (J  K−1  mol−1)    69,91  (H2O,         l),   130,68      (H2)      e  205,0  (O2),  calcule  ∆  f  G◦  para  H2  +  1  O2  →  H2O(l).
+                                                                                                                         2
+
+Solução.     ∆  f  S◦  =  69,91  −  130,68        −  1  (205,0)         =  −163,3  J  K−1  mol−1.       Então
+                                                     2
+
+                          ∆ f G◦ = −285,8 − 298,15 (−0,1633) = −237,1 kJ mol−1 < 0:
+
+a formação é espontânea.                                                                                                                    ■
+
+■ Exemplo 3.8.6 — KP a partir de ∆ f G◦ Com ∆ f G◦ (kJ mol−1) −137,2 (CO), −228,6 (H2O, g) e
+−394,4 (CO2), calcule ∆rG◦ e KP de CO(g) + H2O(g) ⇌ CO2(g) + H2(g) a 298,15 K.
+Solução. ∆rG◦ = −394,4 + 0 − (−137,2 − 228,6) = −28,6 kJ mol−1, então
+
+                           KP = exp 28600/(8,314 × 298,15) = e11,54 = 1,0 × 105.
+
+Cuidado: ∆G em J (não kJ) dentro da exponencial, e os coeficientes estequiométricos multiplicam os
+
+∆ f G◦.                                                                                                                                     ■
+
+3.9 Exercícios resolvidos
+
+■ Exemplo 3.9.1 — Critérios de extremo Qual afirmação está correta: (a) “isolado: o equilíbrio
+minimiza U”; (b) “T,V, N fixos: o equilíbrio minimiza A”; (c) “T, P, N fixos: maximiza G”?
+
+Solução. Só (b). Em (a), num sistema isolado U é constante e quem é extremizado é S (máximo). Em
+
+(c), G é minimizado.                                                                                                                        ■
+
+■ Exemplo 3.9.2 — µ e quantidade de substância No ponto de ebulição normal, 12 g de vapor
+têm G menor que 12 g de líquido?
+
+Solução. Não. Em Tb, µlíq = µvap, então quantidades iguais das duas fases têm o mesmo G. Por isso
+
+elas coexistem e ∆vapG = 0.                                                                                                                 ■
+Formulário
+
+Convenção: + = o sistema ganha energia.
+R = 8,314 J mol−1 K−1 = 0,08314 L bar mol−1 K−1; 1 atm L = 101,3 J; 1 cal = 4,184 J.
+
+Matemática
+
+d f = ∂ f dx + ∂ f dy,             ∂ x ∂ y ∂ f = −1,                                  ∂2f ∂2f         ,
+                                   ∂y f ∂ f x ∂x y                                       =               ln N! ≈ N ln N − N.
+∂x y            ∂y x                                                                  ∂ x∂ y ∂ y∂ x
+
+Gás ideal e Primeira Lei
+
+PV = nRT = NkBT,        ⟨K⟩ = 32 kBT,          U = 2f RT ( f = 3 mono, 5 diat.), CP = CV + R,                  γ = CP/CV
+                        α = V1 ∂V ∂ T
+                                                  , κ = −V1 ∂V ,                      ∂ P ∂ T = V κα
+                                                                  ∂P T
+                                               P
+
+      dU = δ Q + δW, δW = −P dV, Wgás = P dV, H = U + PV, δ QP = dH
+
+            CV =        ∂U ,       CP =           ∂H ,            ∆H =     CP dT,     ∆U = ∆H − P∆V
+                        ∂T V                      ∂T P
+
+isocórico: W = 0, Q = ∆U = nCV ∆T                    isobárico: Q = nCP∆T , W = −P∆V
+isotérmico: ∆U = 0, Q = −W = nRT ln VV21             adiabático: Q = 0, W = ∆U, PV γ , TV γ−1, T P(1−γ)/γ ctes
+
+Joule-Thomson: ∆H = 0, µJT = (∂ T /∂ P)H (> 0: esfria ao expandir), (∂ H/∂ P)T = −CPµJT ; gás ideal: µJT = 0,
+U = U(T ).
+
+Segunda e Terceira Leis
+
+e = W = 1 − QC ≤ 1 − TC ,                            erefrig = QC ≤ TC ,              Q1 + Q2 = 0 (Carnot)
+            QH          QH         TH                          W TH − TC              T1 T2
+
+            dS = δ Qrev ,          dS ≥ δ Q ,     ∆Sisolado ≥ 0,  ∆Strs = ∆Htrs ,        ∆S =            C
+                     T                     T                                 Ttrs                          dT
+
+                                                                                                         T
+
+            ∆Sgi  =  nCV  ln  T21  + nR ln V2 V1  =  nCP ln  T21  − nR ln  P2 P ,1    ∆Smis = −R ∑ n j ln x j
+                              T                              T
+
+Ω(N, q) =       q+N−1                                                              1 ∂S               , P = ∂S
+                              , Ωtot = ΩAΩB, S = kB ln Ω, =
+                     q                                                             T  ∂U V,N T                 ∂V U,N
+
+      S = NkB ln N 3Nh2 V 4πmU 3/2 + 25 ,                    T S(T ) = CP dT + ∑ ∆Htrs (S(0) = 0)
+                                                                           0T            Ttrs
+Formulário                                                                                                   29
+
+Potenciais, Maxwell e equilíbrio
+
+dU = T dS − P dV + ∑ µ dN, U = T S − PV + ∑ µN (Euler), ∑ Nj dµ j = 0 (T, P ctes)
+
+A = U − T S, dA = −S dT − P dV ; G = H − T S, dG = −S dT +V dP; dH = T dS +V dP
+
+                  ∂T =− ∂P ,              ∂T = ∂V ,
+                  ∂V S       ∂S V         ∂P S ∂S P
+                                                                             (Maxwell)
+                  ∂S = ∂P ,               ∂S = − ∂V
+                  ∂V T ∂T V        ∂P T               ∂T P
+
+            ∂U = T ∂ P − P,                     α2TV  ∆G2 = ∆G1 + ∆H 1 − 1
+            ∂V T  ∂T V            CP −CV = κ ,        T2                     T1         T2 T1
+
+espontâneo: ∆A < 0 (T,V ), ∆G = ∆H − T ∆S < 0 (T, P); ∆trsG(T ) = ∆H 1 − T /Ttrs
+
+            G = ∑ µ jNj, G = µ (puro), µ(1) = µ(2) (fases), f = 3 − p, L = T ∆S = ∆H
+
+µ = µ◦ + RT ln(P/P◦), µ j = µ∗j + RT ln a j, Pj = x jPj∗ (Raoult), y j = Pj/P, Pj → x jKH, j (x j → 0)
+
+                        a j = γ jx j = Pj/Pj∗, KH = lim Pj/x j
+
+                                                                      x j→0
+
+∆rG = ∆rG◦ + RT ln Q,   ∆rG◦ = −RT ln K,  ∆rX ◦ = ∑p ν∆ f X ◦ − ∑r ν∆ f X ◦,            Nj  =  N0    ±  νjξ
+
+                                                                                                  j
+Referências Bibliográficas
+
+[1] H. M. Nussenzveig, Curso de Física Básica, vol. 2, 4.a ed., Blucher, 2002.
+[2] D. V. Schroeder, An Introduction to Thermal Physics, Oxford University Press, 1999.
+[3] I. N. Levine, Physical Chemistry, 6th ed., McGraw-Hill, 2008.
+[4] D. A. McQuarrie, J. D. Simon, Physical Chemistry: A Molecular Approach, University Science
+
+     Books, 1997.
+[5] H. B. Callen, Thermodynamics and an Introduction to Thermostatistics, 2nd ed., Wiley, 1985.
+[6] A. J. de Paula, QUI-28 Teórica — Aulas 1 a 7 (slides e aulas gravadas), ITA, 2026.
+Índice Remissivo
+
+atividade, 25                    Euler, relação de, 20
+                                 expansão térmica, 5
+calor específico, 5              extensão da reação, 26
+capacidade térmica, 5
+Carnot                           formação, grandezas de, 27
+                                 função de estado, 4
+     ciclo, 11
+     princípio, 11               gás ideal, 2
+Clausius                         Gibbs-Duhem, 23
+     desigualdade, 14            Gibbs-Helmholtz, 22
+compressibilidade isotérmica, 5
+constante de equilíbrio, 26      Henry, lei de, 25
+
+diagrama de fases, 24            Joule-Thomson, 9
+diferencial
+                                 Legendre, transformada de, 20
+     exata, 4                    lei zero, 3
+     inexata, 4
+     total, 3                    macroestado, 15
+                                 máquina térmica, 10
+energia cinética média, 2        Maxwell, relações de, 21
+energia livre                    Mayer, relação de, 6
+                                 microestado, 15
+     de Gibbs, 20                multiplicidade, 15
+     de Helmholtz, 20
+entalpia, 8                      parâmetros extensivos, 19
+entropia                         parâmetros intensivos, 19
+     de Boltzmann, 16            potencial químico, 23
+     de mistura, 14              primeira lei, 5
+     definição de Clausius, 12   princípio de extremo, 20
+     produzida, 14               processo
+equação fundamental, 19
+equilíbrio                            espontâneo, 2
+     de fases, 23                     reversível, 2
+     termodinâmico, 1
+equipartição, 2                  Raoult, lei de, 25
+espontaneidade, 21               regra cíclica, 3
+32                                                       Índice Remissivo
+
+Sackur-Tetrode, 17      temperatura
+segunda lei                  definição estatística, 17
+
+     Clausius, 10       terceira lei, 17
+     Kelvin, 10         transição de fase
+sistema, 1
+sólido de Einstein, 15       primeira ordem, 24
+
+                        vizinhança, 1
+

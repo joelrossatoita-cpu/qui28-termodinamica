@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QUI-28 Termodinâmica · Revisão</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: uma coluna de leitura (~860px), barra de aulas fixa no topo, cada aula = teoria + questões com resolução recolhível */
+:root{
+  --bg:#ffffff; --surface:#f1f3f5; --ink:#1b1f24; --muted:#5f6873; --line:#e3e6ea;
+  --accent:#2b5fd9; --accent-soft:#e7eefc; --ok:#1f7a4d; --ok-soft:#e2f2e9; --warn:#8a5a00; --warn-soft:#f5ecda;
+  --f-head:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121417; --surface:#1d2126; --ink:#e8eaed; --muted:#9aa3ad; --line:#2a2f36;
+  --accent:#7aa2ff; --accent-soft:#1f2a44; --ok:#5fcf96; --ok-soft:#173022; --warn:#e2b45c; --warn-soft:#33290f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121417; --surface:#1d2126; --ink:#e8eaed; --muted:#9aa3ad; --line:#2a2f36;
+  --accent:#7aa2ff; --accent-soft:#1f2a44; --ok:#5fcf96; --ok-soft:#173022; --warn:#e2b45c; --warn-soft:#33290f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-head);text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(1.8rem,5vw,2.6rem);font-weight:700}
+h2{font-size:1.55rem;font-weight:700}
+h3{font-size:1.1rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+header.top{padding-block:28px 20px;display:grid;gap:12px}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--f-mono);font-size:.8rem;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 10px;color:var(--muted)}
+.chip.hot{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.lede{max-width:65ch;color:var(--muted)}
+
+nav.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.bar .wrap{display:flex;align-items:center;gap:12px;padding-block:8px}
+.navlinks{display:flex;gap:6px;overflow-x:auto;min-width:0;flex:1;scrollbar-width:thin}
+.navlinks a{flex:none;text-decoration:none;color:var(--ink);font-size:.86rem;padding:4px 10px;border-radius:6px;border:1px solid transparent}
+.navlinks a:hover,.navlinks a:focus-visible{border-color:var(--line);outline:none}
+.progress{flex:none;font-family:var(--f-mono);font-size:.8rem;color:var(--ok)}
+
+main{display:grid;gap:40px;padding-block:28px 64px}
+section{display:grid;gap:18px;scroll-margin-top:64px}
+.sec-head{display:grid;gap:4px;border-bottom:2px solid var(--ink);padding-bottom:10px}
+.sec-head .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.links{display:flex;gap:12px;flex-wrap:wrap;font-size:.86rem}
+
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:grid;gap:10px;min-width:0}
+.theory h3{color:var(--accent)}
+.theory ul{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.theory li{min-width:0}
+.mathscroll{overflow-x:auto;max-width:100%}
+
+/* plano */
+.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.day{display:grid;gap:10px;align-content:start}
+.slot{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:10px 0;border-top:1px solid var(--line)}
+.slot:first-of-type{border-top:0}
+.slot .t{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);padding-top:2px}
+.slot b{font-weight:600}
+.slot small{grid-column:2;color:var(--muted);font-size:.86rem}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.how div{display:grid;gap:2px}
+.how .n{font-family:var(--f-mono);color:var(--accent);font-size:.8rem}
+
+/* fórmulas */
+.sheet{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.sheet .box h3{font-size:1rem}
+.sheet ul{margin:0;padding-left:1.1em;display:grid;gap:4px;font-size:.95rem}
+
+/* questões */
+.qs{display:grid;gap:12px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:10px;min-width:0}
+.q.done{border-color:var(--ok)}
+.qhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.qn{font-family:var(--f-head);font-weight:700;font-size:1.05rem}
+.tag{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+.tag.calc{background:var(--accent-soft);color:var(--accent)}
+.tag.conc{background:var(--warn-soft);color:var(--warn)}
+.tag.inc{background:transparent;border:1px solid var(--warn);color:var(--warn)}
+.qhead label{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted);cursor:pointer}
+.qhead input{width:18px;height:18px;accent-color:var(--ok)}
+.stmt{color:var(--ink)}
+details{border-top:1px dashed var(--line);padding-top:8px}
+summary{cursor:pointer;font-weight:600;color:var(--accent);font-size:.92rem}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.sol{display:grid;gap:8px;padding-top:10px}
+.sol ol,.sol ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+.ans{display:inline-flex;align-items:center;gap:8px;background:var(--ok-soft);color:var(--ok);font-weight:600;border-radius:6px;padding:4px 10px;justify-self:start}
+.note{font-size:.88rem;color:var(--muted)}
+.alts{margin:0;padding:0;list-style:none;display:grid;gap:3px;font-size:.93rem}
+.alts li{display:grid;grid-template-columns:22px 1fr;gap:6px}
+.alts .k{font-family:var(--f-mono);font-weight:500}
+.alts .v{color:var(--ok);font-weight:600}
+.alts .x{color:var(--muted)}
+
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:.86rem;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.traps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.traps .box{gap:4px}
+.traps b{font-family:var(--f-head)}
+footer{color:var(--muted);font-size:.85rem;padding-block:0 40px}
+mjx-container{max-width:100%;overflow-x:auto;overflow-y:hidden}
+mjx-container[display="true"]{margin:.4em 0!important}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+/* Versão simples: blocos de cor sólida, sem bordas, sombras ou detalhes */
+h1{font-size:clamp(1.6rem,4.5vw,2.2rem);font-weight:700}
+h2{font-size:1.35rem}
+.eyebrow{font-family:var(--f-body);text-transform:none;letter-spacing:0;font-size:.85rem}
+.chip{border:0;background:var(--surface);color:var(--ink);font-family:var(--f-body);border-radius:4px}
+.chip.hot{background:var(--accent);color:var(--bg)}
+nav.bar{border-bottom:0;background:var(--surface)}
+.navlinks a{border:0;border-radius:4px}
+.navlinks a:hover,.navlinks a:focus-visible{background:var(--bg)}
+.progress{font-family:var(--f-body);font-weight:600}
+.sec-head{border-bottom:0;padding-bottom:0}
+.box,.q{border:0;border-radius:6px;background:var(--surface)}
+.q.done{background:var(--ok-soft)}
+.theory h3{color:var(--ink)}
+.slot{border-top:0}
+.how .n{font-family:var(--f-body);font-weight:600}
+.tag{font-family:var(--f-body);text-transform:none;letter-spacing:0;font-size:.75rem;border-radius:4px}
+.tag.calc{background:var(--accent);color:var(--bg)}
+.tag.conc{background:var(--line);color:var(--ink)}
+.tag.inc{border:0;background:var(--warn-soft);color:var(--warn)}
+details{border-top:0;padding-top:0}
+summary{color:var(--accent)}
+.ans{border-radius:4px;background:var(--ok);color:var(--bg)}
+.alts .k{font-family:var(--f-body)}
+button{border:0;background:var(--surface);border-radius:4px}
+button:hover{background:var(--line)}
+.traps .box{background:var(--surface)}
+</style>
+</head>
+<body>
+
+<header class="wrap top">
+  <span class="eyebrow">QUI-28 · Química Geral II · Módulo de Termodinâmica · Prof. Amauri Jardim de Paula</span>
+  <h1>Revisão para a prova bimestral</h1>
+  <div class="meta">
+    <span class="chip hot">Prova: seg 16/11 · 19:00–22:00</span>
+    <span class="chip">40 questões · listas das aulas 2 a 7</span>
+    <span class="chip">Exame: seg 30/11</span>
+  </div>
+  <p class="lede">O slide 14 da Aula 1 diz que a prova terá exercícios baseados nas listas de cada aula (aulas 2 a 7). Este material junta, para cada aula, a teoria dos slides que você precisa e as questões da lista com o caminho de resolução e o gabarito do professor. Tente cada questão antes de abrir a resolução.</p>
+</header>
+
+<nav class="bar" aria-label="Seções">
+  <div class="wrap">
+    <div class="navlinks">
+      <a href="#plano">Plano</a><a href="#formulas">Fórmulas</a><a href="#aula1">Aula 1</a><a href="#aula2">Aula 2</a><a href="#aula3">Aula 3</a><a href="#aula4">Aula 4</a><a href="#aula5">Aula 5</a><a href="#aula6">Aula 6</a><a href="#aula7">Aula 7</a><a href="#pegadinhas">Pegadinhas</a>
+    </div>
+    <span class="progress" id="progress" aria-live="polite">0/40</span>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ================= PLANO ================= -->
+<section id="plano">
+  <div class="sec-head"><span class="eyebrow">Como estudar até segunda às 19h</span><h2>Plano de estudo</h2></div>
+  <div class="box how">
+    <div><span class="n">1 · tente</span><p>Leia a teoria da aula e resolva a questão na lista original (link em cada aula), 3 a 5 min por questão.</p></div>
+    <div><span class="n">2 · confira</span><p>Abra "Como resolver". Se errou, anote qual fórmula ou conceito faltou.</p></div>
+    <div><span class="n">3 · marque</span><p>Marque "feita". O contador no topo mostra quanto falta.</p></div>
+    <div><span class="n">4 · refaça</span><p>Na véspera, refaça só as de cálculo (etiqueta laranja) sem olhar.</p></div>
+  </div>
+  <div class="days">
+    <div class="box day">
+      <h3>Hoje · domingo 15/11</h3>
+      <div class="slot"><span class="t">bloco 1</span><b>Aula 1 + Aula 2 (Q1–Q6)</b><small>Convenção de sinais, 1ª lei nos 4 processos, ∫C(T)dT. ~1h15</small></div>
+      <div class="slot"><span class="t">bloco 2</span><b>Aula 3 (Q7–Q12)</b><small>Carnot, entropia, Clausius, mistura. ~1h</small></div>
+      <div class="slot"><span class="t">bloco 3</span><b>Aula 4 (Q13–Q18)</b><small>Multiplicidade, S = k ln Ω, Sackur-Tetrode. ~1h</small></div>
+    </div>
+    <div class="box day">
+      <h3>Amanhã · segunda 16/11</h3>
+      <div class="slot"><span class="t">manhã</span><b>Aula 5 (Q19–Q25) + Aula 6 (Q26–Q31)</b><small>3ª lei, potenciais, extremos, Maxwell, Gibbs-Helmholtz. ~2h30</small></div>
+      <div class="slot"><span class="t">tarde</span><b>Aula 7 (Q32–Q40)</b><small>Raoult, Henry, ΔrG° e K<sub>P</sub>. ~1h30</small></div>
+      <div class="slot"><span class="t">até 17h</span><b>Refazer cálculos + pegadinhas</b><small>Q5, 6, 12, 14, 16, 18, 23–24, 26–29, 31–40 sem consulta. Depois a folha de fórmulas.</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FÓRMULAS ================= -->
+<section id="formulas">
+  <div class="sec-head"><span class="eyebrow">Tudo o que as 40 questões usam</span><h2>Folha de fórmulas</h2></div>
+  <div class="sheet">
+    <div class="box"><h3>1ª lei e gás ideal</h3><ul>
+      <li>\(dU=\delta Q+\delta W\), \(\delta W=-P_{ext}\,dV\) (entra no sistema = +)</li>
+      <li>\(PV=nRT\), \(R=k_BN_A=8{,}314\) J mol⁻¹K⁻¹</li>
+      <li>\(U=\tfrac f2 nRT\): mono f = 3, diatômico sem vibração f = 5</li>
+      <li>\(C_P-C_V=R\), \(\gamma=C_P/C_V\), \(PV^\gamma=\text{cte}\)</li>
+      <li>Isotérmico reversível: \(Q=-W=nRT\ln\frac{V_2}{V_1}\)</li>
+      <li>\(\Delta U=\int nC_VdT\) (V cte), \(\Delta H=\int nC_PdT\) (P cte)</li>
+      <li>Joule-Thomson: \(\Delta H=0\), \(\mu_{JT}=(\partial T/\partial P)_H\)</li>
+    </ul></div>
+    <div class="box"><h3>2ª lei e entropia</h3><ul>
+      <li>\(dS=\delta Q_{rev}/T\); \(dS\ge\delta Q/T\) (Clausius)</li>
+      <li>\(dS=dS_{prod}+\delta Q/T\), \(S_{prod}\ge0\)</li>
+      <li>\(\Delta S=\int\frac{C}{T}dT\), \(\Delta S_{trs}=\frac{\Delta H_{trs}}{T_{trs}}\)</li>
+      <li>\(\Delta S=nR\ln\frac{V_2}{V_1}=-nR\ln\frac{P_2}{P_1}\) (T cte)</li>
+      <li>\(\Delta S_{mix}=-R\sum n_i\ln x_i\)</li>
+      <li>\(\eta=1-\frac{Q_C}{Q_H}\le1-\frac{T_C}{T_H}\)</li>
+    </ul></div>
+    <div class="box"><h3>Visão microscópica</h3><ul>
+      <li>\(\Omega(N,q)=\binom{q+N-1}{q}=\frac{(q+N-1)!}{q!\,(N-1)!}\)</li>
+      <li>\(\Omega_{tot}=\Omega_A\,\Omega_B\), \(S=k_B\ln\Omega\)</li>
+      <li>\(\frac1T=\left(\frac{\partial S}{\partial U}\right)_{V,N}\), \(\frac PT=\left(\frac{\partial S}{\partial V}\right)_{U,N}\)</li>
+    </ul></div>
+    <div class="box"><h3>Potenciais e critérios</h3><ul>
+      <li>\(H=U+PV\), \(A=U-TS\), \(G=H-TS\)</li>
+      <li>\(dG=-SdT+VdP+\sum\mu_idN_i\); \(dA=-SdT-PdV+\dots\)</li>
+      <li>max S (U,V,N) · min U (S,V,N) · min A (T,V,N) · min G (T,P,N)</li>
+      <li>Euler: \(U=TS-PV+\sum\mu_iN_i\); \(G=\sum\mu_iN_i\)</li>
+    </ul></div>
+    <div class="box"><h3>Relações (aula 6)</h3><ul>
+      <li>\(\left(\frac{\partial S}{\partial P}\right)_T=-\left(\frac{\partial V}{\partial T}\right)_P\)</li>
+      <li>\(\left(\frac{\partial S}{\partial V}\right)_T=\left(\frac{\partial P}{\partial T}\right)_V\)</li>
+      <li>\(C_P-C_V=\frac{\alpha^2TV}{\kappa_T}\)</li>
+      <li>\(\frac{\Delta G_2}{T_2}=\frac{\Delta G_1}{T_1}+\Delta H\left(\frac1{T_2}-\frac1{T_1}\right)\)</li>
+    </ul></div>
+    <div class="box"><h3>Misturas e reações</h3><ul>
+      <li>Raoult: \(P_j=x_jP_j^*\); Dalton: \(y_j=P_j/P_{tot}\)</li>
+      <li>Henry: \(P_j=x_jk_{H,j}\) quando \(x_j\to0\)</li>
+      <li>\(\Delta_rG^\circ=\sum\nu\,\Delta_fG^\circ_{prod}-\sum\nu\,\Delta_fG^\circ_{reag}\)</li>
+      <li>\(\Delta_rG^\circ=-RT\ln K_P\), \(K_P=e^{-\Delta_rG^\circ/RT}\)</li>
+      <li>\(RT=2478{,}8\) J/mol a 298,15 K</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= AULA 1 ================= -->
+<section id="aula1">
+  <div class="sec-head">
+    <span class="eyebrow">Semana 01 · sem lista, mas é base de tudo</span>
+    <div class="row"><h2>Aula 1 · Ferramentas matemáticas</h2></div>
+  </div>
+  <div class="box theory">
+    <h3>O que levar desta aula</h3>
+    <ul>
+      <li><b>Sistemas:</b> aberto (troca energia e massa), fechado (só energia), isolado (nada).</li>
+      <li><b>Funções de estado</b> (U, H, S, A, G, P, V, T) têm diferencial exata: a variação só depende dos estados inicial e final, e \(\oint dU=0\). <b>Q e W</b> são inexatas (δQ, δW): dependem do caminho, por isso se escreve Q e não ΔQ.</li>
+      <li><b>Diferencial total:</b> \(df=\left(\frac{\partial f}{\partial x}\right)_y dx+\left(\frac{\partial f}{\partial y}\right)_x dy\). Identidades: \(\left(\frac{\partial f}{\partial x}\right)_y=1\big/\left(\frac{\partial x}{\partial f}\right)_y\); regra cíclica \(\left(\frac{\partial x}{\partial y}\right)_f\left(\frac{\partial y}{\partial f}\right)_x\left(\frac{\partial f}{\partial x}\right)_y=-1\); derivadas cruzadas iguais (é daí que saem as relações de Maxwell).</li>
+      <li><b>Gás ideal microscópico:</b> \(\langle K\rangle=\tfrac32k_BT\) por partícula. Equipartição: cada termo quadrático de energia vale \(\tfrac12k_BT\).</li>
+      <li><b>Trabalho no diagrama PV:</b> \(W=\int P\,dV\) = área sob a curva; ciclo no sentido horário tem trabalho líquido positivo.</li>
+      <li><b>Coeficientes:</b> \(\alpha=\frac1V\left(\frac{\partial V}{\partial T}\right)_P\), \(\kappa_T=-\frac1V\left(\frac{\partial V}{\partial P}\right)_T\), \(\left(\frac{\partial P}{\partial T}\right)_V=\frac{\alpha}{\kappa_T}\). Gás ideal: \(\alpha=1/T\), \(\kappa=1/P\). Sólidos têm α e κ muito menores (alumínio α ~ 10⁻⁵ K⁻¹).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= AULA 2 ================= -->
+<section id="aula2">
+  <div class="sec-head">
+    <span class="eyebrow">Semana 02 · Q1–Q6</span>
+    <div class="row"><h2>Aula 2 · Energia e 1ª lei</h2>
+      <span class="links"><a href="https://drive.google.com/file/d/15XL6cmWP0fIv5jsSJwK20H5y7O2IvfKn/view" target="_blank" rel="noopener">Lista original</a><a href="https://drive.google.com/file/d/1auo6DDorF1HyNH-BgeUkxGsxjCMo_F-N/view" target="_blank" rel="noopener">Resolução do professor</a><a href="https://drive.google.com/file/d/1lmBkmBhcOjyx_j1Zz4sHYP8FBLJcrzFW/view" target="_blank" rel="noopener">Slides</a></span></div>
+  </div>
+  <div class="box theory">
+    <h3>Teoria necessária</h3>
+    <ul>
+      <li><b>1ª lei:</b> \(dU=\delta Q+\delta W\). Convenção do curso: referencial no sistema, energia que <i>entra</i> é positiva. Na expansão o gás perde energia: \(\delta W=-P\,dV\lt0\).</li>
+      <li><b>Isocórico (V cte):</b> \(dV=0\Rightarrow\delta W=0\) e \(\Delta U=Q=\int nC_VdT\).</li>
+      <li><b>Isobárico (P cte):</b> \(H=U+PV\Rightarrow dH=\delta Q_P\), logo \(\Delta H=\int nC_PdT\). Com C(T) variável, integre termo a termo.</li>
+      <li><b>Isotérmico (gás ideal):</b> U só depende de T (experimento de Joule) \(\Rightarrow\Delta U=0\) e \(Q=-W\). Reversível: \(Q=nRT\ln(V_2/V_1)\). Contra pressão externa constante: \(|W|=P_{ext}|\Delta V|\).</li>
+      <li><b>Adiabático:</b> \(Q=0\Rightarrow\Delta U=W\). Na expansão W &lt; 0, então U e T caem. Reversível: \(PV^\gamma=\text{cte}\), \(TV^{\gamma-1}=\text{cte}\).</li>
+      <li><b>Capacidades:</b> \(C_V=(\partial U/\partial T)_V\), \(C_P=(\partial H/\partial T)_P\), \(C_P=C_V+R\). Monoatômico: \(C_V=\tfrac32R\), \(C_P=\tfrac52R\).</li>
+      <li><b>Joule-Thomson:</b> expansão por válvula porosa, adiabática e <b>isentálpica</b> (ΔH = 0). \(\mu_{JT}=(\partial T/\partial P)_H\): se \(\mu_{JT}\gt0\) o gás esfria ao expandir, se \(\mu_{JT}\lt0\) esquenta. Gás ideal: \(\mu_{JT}=0\). Gás real: o sinal depende de P e T iniciais (curva de inversão, base da liquefação).</li>
+    </ul>
+  </div>
+  <div class="qs">
+    <article class="q" data-q="1"><div class="qhead"><span class="qn">Q1</span><span class="tag conc">conceito</span></div>
+      <p class="stmt">Sinais de dU e δW no <b>aquecimento a volume constante</b> de um gás ideal.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol><li>V constante ⇒ \(dV=0\) ⇒ \(\delta W=-P\,dV=0\).</li><li>O gás recebe calor ⇒ \(dU=\delta Q\gt0\).</li></ol>
+        <span class="ans">C · dU &gt; 0 e δW = 0</span></div></details></article>
+
+    <article class="q" data-q="2"><div class="qhead"><span class="qn">Q2</span><span class="tag conc">conceito</span></div>
+      <p class="stmt">Sinais de dU e δW na <b>expansão adiabática</b> de um gás ideal.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol><li>Adiabático ⇒ \(\delta Q=0\) ⇒ \(dU=\delta W\).</li><li>Expansão: o gás empurra a vizinhança e perde energia ⇒ \(\delta W\lt0\).</li><li>Logo \(dU\lt0\) (o gás esfria).</li></ol>
+        <span class="ans">E · dU &lt; 0 e δW &lt; 0</span></div></details></article>
+
+    <article class="q" data-q="3"><div class="qhead"><span class="qn">Q3</span><span class="tag conc">conceito</span></div>
+      <p class="stmt">Sinais de dU e δW na <b>expansão isotérmica</b> de um gás ideal.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol><li>Gás ideal: U depende só de T. T constante ⇒ \(dU=0\).</li><li>Expansão ⇒ \(\delta W\lt0\) (e o calor que entra compensa: \(\delta Q=-\delta W\gt0\)).</li></ol>
+        <span class="ans">B · dU = 0 e δW &lt; 0</span></div></details></article>
+
+    <article class="q" data-q="4"><div class="qhead"><span class="qn">Q4</span><span class="tag conc">conceito</span></div>
+      <p class="stmt">O que acontece com a temperatura de um <b>gás real</b> numa expansão Joule-Thomson.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>A expansão é isentálpica e o sinal de \(\mu_{JT}=(\partial T/\partial P)_H\) muda ao longo da curva isentálpica: abaixo da pressão de inversão o gás esfria, acima dela esquenta. "Sempre aumenta", "sempre diminui" e "constante" estão erradas (constante só vale para gás ideal).</p>
+        <span class="ans">C · pode aumentar ou diminuir, conforme P e T iniciais</span></div></details></article>
+
+    <article class="q" data-q="5"><div class="qhead"><span class="qn">Q5</span><span class="tag calc">cálculo</span><span class="tag inc">convenção invertida</span></div>
+      <p class="stmt">Gás ideal: 4,00 dm³ a 4,00 bar, comprimido <b>isotermicamente</b> contra P<sub>ext</sub> constante até 2,00 dm³. Menor P<sub>ext</sub> possível e o trabalho W. Atenção: aqui o enunciado <b>inverte a convenção</b> (perda de energia = positivo).</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol>
+          <li>Estado final (isoterma): \(P_2=\frac{P_1V_1}{V_2}=\frac{4{,}00\times4{,}00}{2{,}00}=8{,}00\) bar.</li>
+          <li>Para o pistão chegar a 2,00 dm³ empurrando com pressão constante, P<sub>ext</sub> não pode ser menor que a pressão final do gás ⇒ mínimo \(P_{ext}=8\) bar.</li>
+          <li>\(W=P_{ext}\,\Delta V=8{,}00\times10^5\,\text{Pa}\times(-2{,}00\times10^{-3}\,\text{m}^3)=-1600\) J.</li>
+          <li>Sinal: na convenção invertida, o sistema que <i>recebe</i> energia (compressão) tem W negativo. Atalho de unidade: 1 bar·dm³ = 100 J.</li>
+        </ol>
+        <span class="ans">B · P<sub>ext</sub> = 8 bar ; W = −1600 J</span>
+        <p class="note">C, D e E trazem "kJ" ou 16 bar: são armadilhas de unidade.</p></div></details></article>
+
+    <article class="q" data-q="6"><div class="qhead"><span class="qn">Q6</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">\(C_P(T)=\alpha\left[3{,}0+\frac{1{,}0\,\text{K}}{T}+(2{,}0\times10^{-1}\,\text{K}^{-1})\,T\right]\), α = 0,1 J mol⁻¹K⁻¹. Calcule ΔH para 2 mol aquecidos de 10 K a 27 K a 1 bar.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <div class="mathscroll">\[\Delta H=n\alpha\int_{10}^{27}\!\left(3+\frac1T+0{,}2\,T\right)dT=n\alpha\left[3(17)+\ln\frac{27}{10}+0{,}2\cdot\frac{27^2-10^2}{2}\right]\]</div>
+        <ol><li>\(3\times17=51\); \(\ln2{,}7\approx0{,}99\); \(0{,}2\times314{,}5=62{,}9\). Soma ≈ 114,9 K.</li><li>\(\Delta H=2\times0{,}1\times114{,}9\approx23\) J.</li></ol>
+        <span class="ans">B · 23 J</span></div></details></article>
+  </div>
+</section>
+
+<!-- ================= AULA 3 ================= -->
+<section id="aula3">
+  <div class="sec-head">
+    <span class="eyebrow">Semana 03 · Q7–Q12</span>
+    <div class="row"><h2>Aula 3 · Entropia e 2ª lei (macro)</h2>
+      <span class="links"><a href="https://drive.google.com/file/d/1FYm_hDT1hy8JIgQRJoh3W7Hz-328jjZo/view" target="_blank" rel="noopener">Lista original</a><a href="https://drive.google.com/file/d/1l923x8f816eZGHO9Nl5daVSlE8TqdkMB/view" target="_blank" rel="noopener">Resolução do professor</a><a href="https://drive.google.com/file/d/1Yr2H7ay25R8_HeKUJCuuYu-Tn4Ym-jie/view" target="_blank" rel="noopener">Slides</a></span></div>
+  </div>
+  <div class="box theory">
+    <h3>Teoria necessária</h3>
+    <ul>
+      <li><b>Enunciados da 2ª lei</b> (equivalentes): Kelvin, nenhum ciclo transforma integralmente calor de uma fonte em trabalho; Clausius, nenhum ciclo passa calor do frio para o quente como único efeito.</li>
+      <li><b>Motor:</b> \(\eta=\frac{W}{Q_H}=1-\frac{Q_C}{Q_H}\). <b>Refrigerador:</b> \(e=\frac{Q_C}{W}=\frac{Q_C}{Q_H-Q_C}\). Num ciclo, todas as funções de estado têm variação zero (ΔU = 0, ΔS<sub>motor</sub> = 0).</li>
+      <li><b>Carnot</b> (isotermas + adiabáticas, reversível): \(\frac{Q_H}{T_H}=\frac{|Q_C|}{T_C}\) e \(\eta_C=1-\frac{T_C}{T_H}\) é o máximo. Qualquer irreversibilidade (atrito, ΔT finito, mistura) gera entropia e dá \(\frac{|Q_C|}{T_C}\gt\frac{Q_H}{T_H}\), \(\eta\lt\eta_C\). Área grande no PV não "fura" Carnot.</li>
+      <li><b>Entropia</b> é função de estado: \(dS=\frac{\delta Q_{rev}}{T}\), \(\oint dS=0\).
+        <ul><li>Transição de fase (T e P ctes): \(\Delta S=\Delta H/T\).</li><li>Aquecimento: \(\Delta S=\int\frac{C(T)}{T}dT\); C constante: \(nC\ln\frac{T_2}{T_1}\).</li><li>Isotérmico, gás ideal: \(\Delta S=nR\ln\frac{V_2}{V_1}\).</li></ul></li>
+      <li><b>Mistura de gases ideais</b> diferentes (mesmos T e P): \(\Delta S_{mix}=-R(n_A\ln x_A+n_B\ln x_B)\ge0\). Gases iguais: zero. É irreversível.</li>
+      <li><b>Desigualdade de Clausius:</b> \(dS\ge\frac{\delta Q}{T}\), ou \(dS=dS_{prod}+\frac{\delta Q}{T}\) com \(S_{prod}=0\) só no reversível e \(\gt0\) no irreversível; nunca negativo. Em ciclo irreversível \(\oint\frac{\delta Q}{T}\lt0\). Adiabático irreversível: \(\Delta S=S_{prod}\gt0\) (adiabático ≠ isentrópico).</li>
+    </ul>
+  </div>
+  <div class="qs">
+    <article class="q" data-q="7"><div class="qhead"><span class="qn">Q7</span><span class="tag conc">conceito</span><span class="tag inc">pede a incorreta</span></div>
+      <p class="stmt">Afirmações sobre 1ª lei, calor, trabalho, entalpia e entropia.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ul class="alts">
+          <li><span class="k v">A</span><span>Errada: a P constante o calor é igual a <b>ΔH</b>, não a ΔS (\(\Delta S=\int\delta q/T\)).</span></li>
+          <li><span class="k x">B</span><span class="x">Certa: é a 1ª lei, \(dU=\delta q+\delta W\).</span></li>
+          <li><span class="k x">C</span><span class="x">Certa: energia sai como calor e/ou trabalho.</span></li>
+          <li><span class="k x">D</span><span class="x">Certa: \(dH=\delta q+VdP\Rightarrow dH=\delta q\) a P cte.</span></li>
+          <li><span class="k x">E</span><span class="x">Certa: V cte ⇒ W = 0 ⇒ dU = δq.</span></li>
+        </ul><span class="ans">A</span></div></details></article>
+
+    <article class="q" data-q="8"><div class="qhead"><span class="qn">Q8</span><span class="tag conc">conceito</span></div>
+      <p class="stmt">Qual afirmação é correta (entropia, entalpia, energia interna).</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ul class="alts">
+          <li><span class="k x">A</span><span class="x">Falsa: \(dU=TdS-PdV\); não há relação inversa obrigatória entre U e S.</span></li>
+          <li><span class="k x">B</span><span class="x">Falsa: \(H=U+PV\).</span></li>
+          <li><span class="k x">C</span><span class="x">Falsa: \(dS=\delta q/T\) só no reversível; em geral \(dS\ge\delta q/T\).</span></li>
+          <li><span class="k x">D</span><span class="x">Falsa: U depende de T (gás ideal: só de T).</span></li>
+          <li><span class="k v">E</span><span>Correta: adiabático irreversível ⇒ \(\Delta S=S_{prod}\gt0\).</span></li>
+        </ul><span class="ans">E</span></div></details></article>
+
+    <article class="q" data-q="9"><div class="qhead"><span class="qn">Q9</span><span class="tag conc">conceito</span></div>
+      <p class="stmt">Ciclos, motores térmicos e geração de entropia: qual é correta.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ul class="alts">
+          <li><span class="k x">A</span><span class="x">Falsa: \(\oint\delta Q/T=0\) só no reversível; no irreversível é &lt; 0.</span></li>
+          <li><span class="k x">B</span><span class="x">Falsa: isolar não remove irreversibilidades internas; η &lt; η<sub>Carnot</sub>.</span></li>
+          <li><span class="k x">C</span><span class="x">Falsa: adiabático real tem \(\Delta S=S_{ger}\gt0\).</span></li>
+          <li><span class="k v">D</span><span>Correta: \(S_{ger}=0\) só no reversível, \(\gt0\) no irreversível.</span></li>
+          <li><span class="k x">E</span><span class="x">Falsa: etapas reversíveis têm S<sub>ger</sub> = 0 e não compensam nada; \(S_{ger}\ge0\) sempre.</span></li>
+        </ul><span class="ans">D</span></div></details></article>
+
+    <article class="q" data-q="10"><div class="qhead"><span class="qn">Q10</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">1 mol de gás ideal A + 1 mol de gás ideal B (diferentes), mesmos T e P, misturados isotermicamente. ΔS<sub>mix</sub>?</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <div class="mathscroll">\[x_A=x_B=\tfrac12\;\Rightarrow\;\Delta S_{mix}=-R\left(1\cdot\ln\tfrac12+1\cdot\ln\tfrac12\right)=2R\ln2\approx11{,}5\ \text{J K}^{-1}\]</div>
+        <span class="ans">C · 2R ln 2</span><p class="note">Sinal positivo sempre (x &lt; 1 ⇒ ln x &lt; 0). Opção B tem o sinal trocado.</p></div></details></article>
+
+    <article class="q" data-q="11"><div class="qhead"><span class="qn">Q11</span><span class="tag conc">conceito</span></div>
+      <p class="stmt">Motor entre T<sub>h</sub> e T<sub>c</sub> que absorve Q<sub>h</sub> e rejeita Q<sub>c</sub>: qual é correta.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ul class="alts">
+          <li><span class="k x">A</span><span class="x">Falsa: em ciclo o motor volta ao estado inicial ⇒ ΔS<sub>motor</sub> = 0.</span></li>
+          <li><span class="k v">B</span><span>Correta: reversível ⇒ igualdade e η = η<sub>Carnot</sub>; irreversível ⇒ \(|Q_c|/T_c\gt Q_h/T_h\) e η &lt; η<sub>Carnot</sub>.</span></li>
+          <li><span class="k x">C</span><span class="x">Falsa: para o reversível vale a igualdade.</span></li>
+          <li><span class="k x">D</span><span class="x">Falsa: área no PV é trabalho, não supera Carnot.</span></li>
+          <li><span class="k x">E</span><span class="x">Falsa: máximo exige S<sub>prod</sub> = 0.</span></li>
+        </ul><span class="ans">B</span></div></details></article>
+
+    <article class="q" data-q="12"><div class="qhead"><span class="qn">Q12</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">\(C_V(T)=20+0{,}010\,T\) (J mol⁻¹K⁻¹). 2,0 mol aquecidos de 100 K a 270 K a volume constante. ΔS?</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <div class="mathscroll">\[\Delta S=n\int_{T_1}^{T_2}\frac{C_V}{T}dT=n\left[20\ln\frac{T_2}{T_1}+0{,}010\,(T_2-T_1)\right]\]</div>
+        <ol><li>\(\ln(270/100)=\ln2{,}7\approx0{,}993\) ⇒ \(20\times0{,}993=19{,}87\).</li><li>\(0{,}010\times170=1{,}70\).</li><li>\(\Delta S=2{,}0\times(19{,}87+1{,}70)\approx43{,}1\) J/K.</li></ol>
+        <span class="ans">D · 43 J K⁻¹</span></div></details></article>
+  </div>
+</section>
+
+<!-- ================= AULA 4 ================= -->
+<section id="aula4">
+  <div class="sec-head">
+    <span class="eyebrow">Semana 04 · Q13–Q18</span>
+    <div class="row"><h2>Aula 4 · Entropia e 2ª lei (micro)</h2>
+      <span class="links"><a href="https://drive.google.com/file/d/1aicxH2bpUtmHGIAGhrbXyR5VUQrRETQK/view" target="_blank" rel="noopener">Lista original</a><a href="https://drive.google.com/file/d/18B8VeX1u26C6E7Qft2TAMEJqU9P1I0Ni/view" target="_blank" rel="noopener">Resolução do professor</a><a href="https://drive.google.com/file/d/1hXXPkMgnAEJIHHGIx7zoUoCayqbkfGO3/view" target="_blank" rel="noopener">Slides</a><a href="https://drive.google.com/file/d/1ihhxm9Jv01jD83O70Eo9UX21wT0s4WoN/view" target="_blank" rel="noopener">Material extra (Sackur-Tetrode)</a></span></div>
+  </div>
+  <div class="box theory">
+    <h3>Teoria necessária</h3>
+    <ul>
+      <li><b>Microestado:</b> descrição completa (no sólido de Einstein, quantos quanta cada oscilador tem). <b>Macroestado:</b> descrição resumida (vetor de ocupação, quanto de energia está em A). <b>Multiplicidade Ω:</b> número de microestados de um macroestado.</li>
+      <li><b>Sólido de Einstein</b> (q quanta indistinguíveis em N osciladores distinguíveis, modelo "bolas e barras"): \(\Omega(N,q)=\binom{q+N-1}{q}=\frac{(q+N-1)!}{q!\,(N-1)!}\).</li>
+      <li><b>Subsistemas:</b> \(\Omega_{tot}=\Omega_A\times\Omega_B\) (produto). Como \(S=k_B\ln\Omega\), a entropia soma: \(S=S_A+S_B\).</li>
+      <li><b>Probabilidade:</b> todos os <i>microestados</i> são equiprováveis; os <i>macroestados</i> não (P ∝ Ω). O sistema isolado evolui para o macroestado de maior Ω (forma estatística da 2ª lei). Em sistemas grandes o pico é estreitíssimo (flutuação relativa ~ 1/√N): limite termodinâmico.</li>
+      <li><b>Temperatura:</b> \(\frac1T=\left(\frac{\partial S}{\partial U}\right)_{V,N}\). No equilíbrio térmico \(\partial S_A/\partial U_A=\partial S_B/\partial U_B\).</li>
+      <li><b>T negativa:</b> possível quando a energia tem limite superior e há inversão de população (spins, lasers). Um sistema a T &lt; 0 cede energia a qualquer sistema a T &gt; 0 ("mais quente"). Não viola a 2ª lei.</li>
+      <li><b>Sackur-Tetrode</b> (gás ideal monoatômico): \(S=Nk_B\left[\ln\!\left(\frac VN\left(\frac{4\pi mU}{3Nh^2}\right)^{3/2}\right)+\frac52\right]\). U só aparece em \(\tfrac32Nk_B\ln U\); V só em \(Nk_B\ln V\).</li>
+      <li><b>Equipartição:</b> \(U=\tfrac f2 nRT\). Monoatômico f = 3; diatômico sem vibração f = 3 translações + 2 rotações = 5.</li>
+    </ul>
+  </div>
+  <div class="qs">
+    <article class="q" data-q="13"><div class="qhead"><span class="qn">Q13</span><span class="tag conc">conceito</span></div>
+      <p class="stmt">Microestado, macroestado e multiplicidade: qual é correta.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ul class="alts">
+          <li><span class="k v">A</span><span>Correta: no sólido de Einstein, saber como os q quanta estão distribuídos entre os N osciladores define o microestado.</span></li>
+          <li><span class="k x">B</span><span class="x">Falsa: vetor de ocupação [n<sub>esq</sub>, n<sub>dir</sub>] é macroestado.</span></li>
+          <li><span class="k x">C</span><span class="x">Falsa: macroestados não são equiprováveis.</span></li>
+          <li><span class="k x">D</span><span class="x">Falsa: Ω<sub>total</sub> é produto.</span></li>
+          <li><span class="k x">E</span><span class="x">Falsa: evolui para maior multiplicidade.</span></li>
+        </ul><span class="ans">A</span></div></details></article>
+
+    <article class="q" data-q="14"><div class="qhead"><span class="qn">Q14</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Sólido A: N<sub>A</sub> = 3, q<sub>A</sub> = 2. Sólido B: N<sub>B</sub> = 2, q<sub>B</sub> = 1. Calcule Ω<sub>A</sub>, Ω<sub>B</sub> e Ω<sub>total</sub>.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <div class="mathscroll">\[\Omega_A=\binom{2+3-1}{2}=\binom42=6\qquad\Omega_B=\binom{1+2-1}{1}=\binom21=2\qquad\Omega_{tot}=6\times2=12\]</div>
+        <span class="ans">E · 6, 2, 12</span><p class="note">B (soma = 8) é a armadilha do "soma em vez de produto".</p></div></details></article>
+
+    <article class="q" data-q="15"><div class="qhead"><span class="qn">Q15</span><span class="tag conc">conceito</span><span class="tag inc">pede a incorreta</span></div>
+      <p class="stmt">Implicações de \(1/T=(\partial S/\partial U)_{V,N}\), incluindo temperaturas negativas.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>A, B, C e E repetem o slide 32 da aula 4 (T positiva em sistemas grandes; T negativa com espectro limitado; T negativa é "mais quente"; T mede como S varia com U). D afirma que T negativa viola a 2ª lei: falso.</p>
+        <span class="ans">D</span></div></details></article>
+
+    <article class="q" data-q="16"><div class="qhead"><span class="qn">Q16</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Pela Sackur-Tetrode, U de 1 mol de He em 1 m³ a 100 K (R = 8,314).</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol><li>Derive S em U: \(\left(\frac{\partial S}{\partial U}\right)_{V,N}=\frac{3Nk_B}{2U}=\frac1T\).</li><li>\(U=\tfrac32Nk_BT=\tfrac32RT\) para 1 mol.</li><li>\(U=1{,}5\times8{,}314\times100=1247\) J ≈ 1,25 kJ. O volume não entra.</li></ol>
+        <span class="ans">A · 1,25 kJ</span></div></details></article>
+
+    <article class="q" data-q="17"><div class="qhead"><span class="qn">Q17</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Pela Sackur-Tetrode, quanto vale \((\partial S/\partial V)_{U,N}\)?</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol><li>V só aparece em \(Nk_B\ln V\) ⇒ \(\left(\frac{\partial S}{\partial V}\right)_{U,N}=\frac{Nk_B}{V}\).</li><li>Como \(PV=Nk_BT\): \(\frac{Nk_B}{V}=\frac PT\).</li></ol>
+        <span class="ans">B · P/T</span></div></details></article>
+
+    <article class="q" data-q="18"><div class="qhead"><span class="qn">Q18</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">U de 1 mol de O₂ (gás ideal, sem vibração) em 1 m³ a 100 K.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol><li>Diatômico: 3 translações + 2 rotações ⇒ f = 5.</li><li>\(U=\tfrac52RT=2{,}5\times8{,}314\times100\approx2079\) J ≈ 2 kJ.</li></ol>
+        <span class="ans">B · 2 kJ</span></div></details></article>
+  </div>
+</section>
+
+<!-- ================= AULA 5 ================= -->
+<section id="aula5">
+  <div class="sec-head">
+    <span class="eyebrow">Semana 05 · Q19–Q25</span>
+    <div class="row"><h2>Aula 5 · Espontaneidade e 3ª lei</h2>
+      <span class="links"><a href="https://drive.google.com/file/d/1rjzEVnGs8kbA9rxEIDQhveDbHloQv3eu/view" target="_blank" rel="noopener">Lista original</a><a href="https://drive.google.com/file/d/1BXC_3UHM1af6iy66ortIaeB83jNmlUi-/view" target="_blank" rel="noopener">Resolução do professor</a><a href="https://drive.google.com/file/d/13RfeHOeXBoL_1h1Cpm1qv5UQOF4lcqXb/view" target="_blank" rel="noopener">Slides</a></span></div>
+  </div>
+  <div class="box theory">
+    <h3>Teoria necessária</h3>
+    <ul>
+      <li><b>Entropia absoluta:</b> \(S(T)=S(0)+\int_0^T\frac{C_P}{T}dT\), somando \(\Delta H_{trs}/T_{trs}\) em cada mudança de fase (C<sub>P</sub> → 0 quando T → 0).</li>
+      <li><b>3ª lei.</b> Nernst: ΔS → 0 quando T → 0. Planck: <b>cristal perfeito</b> (sem impurezas, defeitos ou desordem) com estado fundamental <b>não degenerado</b> (W = 1) ⇒ \(S(0)=k\ln1=0\).</li>
+      <li><b>Entropia residual:</b> desordem congelada (ex.: orientação dos H no gelo Ih, \(S_0\approx R\ln\frac32\)) dá \(S_0=R\ln g\gt0\). Não viola a 3ª lei: só não é cristal perfeito. Se a calorimetria assume S(0) = 0 numa amostra assim, subestima S em S₀.</li>
+      <li><b>Inatingibilidade:</b> nenhum processo com número finito de etapas chega a 0 K, por mais lento que seja.</li>
+      <li><b>Equação fundamental</b> \(S(U,V,N_i)\) ou \(U(S,V,N_i)\): contém toda a informação. Intensivos são derivadas: \(T=\left(\frac{\partial U}{\partial S}\right)\), \(-P=\left(\frac{\partial U}{\partial V}\right)\), \(\mu_i=\left(\frac{\partial U}{\partial N_i}\right)\). Equações de estado saem da fundamental; o caminho inverso só funciona com o conjunto <b>completo</b> de equações de estado.</li>
+      <li><b>Euler</b> (U homogênea de grau 1): \(U=TS-PV+\sum\mu_iN_i\).</li>
+      <li><b>Transformadas de Legendre:</b> \(A=U-TS\), \(H=U+PV\), \(G=U-TS+PV=H-TS\). Conhecendo G(T,P,N) recupera-se U pela transformada inversa.</li>
+      <li><b>Princípio de extremo:</b> isolado (U,V,N fixos) ⇒ <b>max S</b>; S,V,N fixos ⇒ <b>min U</b>; T,V,N fixos ⇒ <b>min A</b>; T,P,N fixos ⇒ <b>min G</b>. Espontâneo: dA ≤ 0 ou dG ≤ 0; equilíbrio: = 0.</li>
+      <li><b>Mudança de fase:</b> em T<sub>eq</sub>, ΔG = 0 ⇒ \(\Delta S=\Delta H/T_{eq}\). Fora dela, com ΔH e ΔS constantes: \(\Delta G(T)=\Delta H-T\Delta S\). U, H, A e G têm todas dimensão de energia.</li>
+    </ul>
+  </div>
+  <div class="qs">
+    <article class="q" data-q="19"><div class="qhead"><span class="qn">Q19</span><span class="tag conc">conceito</span></div>
+      <p class="stmt">3ª lei, entropia residual e cristal perfeito: qual é correta.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ul class="alts">
+          <li><span class="k x">A</span><span class="x">Falsa: entropia residual não viola a 3ª lei.</span></li>
+          <li><span class="k v">B</span><span>Correta: não degenerado ⇒ W = 1 ⇒ S(0) = 0.</span></li>
+          <li><span class="k x">C</span><span class="x">Falsa: 0 K é inatingível em número finito de etapas.</span></li>
+          <li><span class="k x">D</span><span class="x">Falsa: cristal perfeito não admite impurezas nem defeitos.</span></li>
+          <li><span class="k x">E</span><span class="x">Falsa: não há valor positivo universal; o cristal perfeito tem S(0) = 0.</span></li>
+        </ul><span class="ans">B</span></div></details></article>
+
+    <article class="q" data-q="20"><div class="qhead"><span class="qn">Q20</span><span class="tag conc">conceito</span></div>
+      <p class="stmt">Quatro afirmações (I a IV) sobre calorimetria, S(0), degenerescência e cristal perfeito.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ul><li>I: assumir S(0) = 0 com resíduo real subestima S em S₀. Certa.</li><li>II: não degenerado e sem desordem ⇒ S(0) = 0. Certa.</li><li>III: degenerescência orientacional ⇒ \(S_0=R\ln g\gt0\). Certa.</li><li>IV: cristal perfeito pode ter desordem a T &gt; 0 mas ordena em T → 0; se S(0⁺) &gt; 0, não é o caso da 3ª lei. Certa.</li></ul>
+        <span class="ans">E · I, II, III e IV</span></div></details></article>
+
+    <article class="q" data-q="21"><div class="qhead"><span class="qn">Q21</span><span class="tag conc">conceito</span><span class="tag inc">pede a incorreta</span></div>
+      <p class="stmt">Equação fundamental, equações de estado, Euler e Legendre.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>A (formas completas), B (EoS saem da fundamental; o recíproco não é garantido), C (Euler) e D (Legendre inversa a partir de G) estão nos slides. E diz que não é preciso ter todas as equações de estado para reconstruir S(U,V,N): é o oposto, precisa de um conjunto completo e compatível.</p>
+        <span class="ans">E</span></div></details></article>
+
+    <article class="q" data-q="22"><div class="qhead"><span class="qn">Q22</span><span class="tag conc">conceito</span></div>
+      <p class="stmt">Princípio de extremo para cada conjunto de variáveis fixas.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ul class="alts">
+          <li><span class="k v">A</span><span>Correta: T, V, N fixos ⇒ min A.</span></li>
+          <li><span class="k x">B</span><span class="x">Falsa: isolado ⇒ max S (U é constante, não minimiza).</span></li>
+          <li><span class="k x">C</span><span class="x">Falsa: T, P fixos ⇒ <b>min</b> G.</span></li>
+          <li><span class="k x">D</span><span class="x">Falsa: ΔS<sub>total</sub> ≥ 0 e o equilíbrio é max S.</span></li>
+          <li><span class="k x">E</span><span class="x">Falsa: S, V, N fixos ⇒ min U.</span></li>
+        </ul><span class="ans">A</span></div></details></article>
+
+    <article class="q" data-q="23"><div class="qhead"><span class="qn">Q23</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Benzeno: Δ<sub>vap</sub>H = 30,72 kJ/mol a T<sub>eb</sub> = 80,09 °C; ΔH e ΔS constantes. Δ<sub>vap</sub>G a 75,0 °C?</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol><li>Em T<sub>eb</sub> = 353,24 K, ΔG = 0 ⇒ \(\Delta S=\frac{30\,720}{353{,}24}\approx87{,}0\) J mol⁻¹K⁻¹.</li><li>75,0 °C = 348,15 K: \(\Delta G=30{,}72-348{,}15\times0{,}0870\approx+0{,}44\) kJ/mol.</li><li>Atalho: \(\Delta G\approx\Delta S\,(T_{eb}-T)=87\times5{,}1\approx0{,}44\) kJ.</li></ol>
+        <span class="ans">C · +0,4 kJ mol⁻¹</span></div></details></article>
+
+    <article class="q" data-q="24"><div class="qhead"><span class="qn">Q24</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Mesmo contexto: Δ<sub>vap</sub>G a 85,0 °C?</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>85,0 °C = 358,15 K: \(\Delta G=30{,}72-358{,}15\times0{,}0870\approx-0{,}43\) kJ/mol (ou \(87\times(-4{,}9)\approx-0{,}43\) kJ).</p>
+        <span class="ans">C · −0,4 kJ mol⁻¹</span></div></details></article>
+
+    <article class="q" data-q="25"><div class="qhead"><span class="qn">Q25</span><span class="tag conc">conceito</span><span class="tag inc">pede a incorreta</span></div>
+      <p class="stmt">Espontaneidade da vaporização do benzeno, dimensões de U/H/A/G e o equilíbrio em 80,09 °C.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>A e B seguem dos cálculos (ΔG &gt; 0 abaixo, &lt; 0 acima de T<sub>eb</sub>). C: todas são energia (J). E: conservação de matéria, dN<sub>vap</sub> = −dN<sub>liq</sub>. D diz que o G de 12 g de vapor é menor que o de 12 g de líquido em 80,09 °C e 1 atm: no ponto de ebulição μ<sub>liq</sub> = μ<sub>vap</sub>, então os G são <b>iguais</b>.</p>
+        <span class="ans">D</span></div></details></article>
+  </div>
+</section>
+
+<!-- ================= AULA 6 ================= -->
+<section id="aula6">
+  <div class="sec-head">
+    <span class="eyebrow">Semana 06 · Q26–Q31</span>
+    <div class="row"><h2>Aula 6 · Relações termodinâmicas e potencial químico</h2>
+      <span class="links"><a href="https://drive.google.com/file/d/1h4beF2BXSS_JHC3dhgaizEf2TK4s0GfO/view" target="_blank" rel="noopener">Lista original</a><a href="https://drive.google.com/file/d/1fSJwxwWboUxPk18kydZLxBItjLpx7SbV/view" target="_blank" rel="noopener">Resolução do professor</a><a href="https://drive.google.com/file/d/1RDFnRHcQOIA8FkeD-N2dEnmurQwUNUHH/view" target="_blank" rel="noopener">Slides</a></span></div>
+  </div>
+  <div class="box theory">
+    <h3>Teoria necessária</h3>
+    <ul>
+      <li><b>Os 4 potenciais e suas derivadas</b> (variáveis naturais entre parênteses):
+        <div class="mathscroll">\[\begin{aligned}dU&=TdS-PdV\ (S,V) & dA&=-SdT-PdV\ (T,V)\\ dH&=TdS+VdP\ (S,P) & dG&=-SdT+VdP\ (T,P)\end{aligned}\]</div>
+        Ex.: \((\partial G/\partial T)_P=-S\), \((\partial G/\partial P)_T=V\), \((\partial G/\partial N_i)_{T,P}=\mu_i\).</li>
+      <li><b>Relações de Maxwell</b> (derivadas cruzadas iguais):
+        <div class="mathscroll">\[\left(\tfrac{\partial T}{\partial V}\right)_S=-\left(\tfrac{\partial P}{\partial S}\right)_V\quad\left(\tfrac{\partial S}{\partial V}\right)_T=\left(\tfrac{\partial P}{\partial T}\right)_V\quad\left(\tfrac{\partial T}{\partial P}\right)_S=\left(\tfrac{\partial V}{\partial S}\right)_P\quad\left(\tfrac{\partial S}{\partial P}\right)_T=-\left(\tfrac{\partial V}{\partial T}\right)_P\]</div>
+        Estratégia: troque derivadas com S (não mensurável) por derivadas de P, V, T.</li>
+      <li><b>Entropia com a pressão</b> (T cte, gás ideal): \(dS=-\left(\frac{\partial V}{\partial T}\right)_PdP=-\frac{R}{P}dP\Rightarrow\Delta S=-R\ln\frac{P_2}{P_1}\) (por mol).</li>
+      <li>\(\left(\frac{\partial U}{\partial V}\right)_T=T\left(\frac{\partial P}{\partial T}\right)_V-P=\frac{T\alpha}{\kappa_T}-P\) (= 0 para gás ideal).</li>
+      <li><b>C<sub>P</sub> e C<sub>V</sub>:</b> \(C_P-C_V=\frac{\alpha^2TV}{\kappa_T}\). Em gás é R; em sólido é pequeno porque α é pequeno. C<sub>P</sub> &gt; C<sub>V</sub> porque a P cte parte do calor vira trabalho de expansão. Diatômico tem C<sub>V</sub> maior que monoatômico (mais graus de liberdade).</li>
+      <li><b>Gibbs-Helmholtz:</b> \(\left[\frac{\partial(\Delta G/T)}{\partial T}\right]_P=-\frac{\Delta H}{T^2}\). Integrando com ΔH constante: \(\frac{\Delta G_2}{T_2}-\frac{\Delta G_1}{T_1}=\Delta H\left(\frac1{T_2}-\frac1{T_1}\right)\).</li>
+      <li><b>Potencial químico:</b> \(G=\sum\mu_iN_i\); para substância pura, G molar = μ. Gibbs-Duhem: \(SdT-VdP+\sum N_id\mu_i=0\).</li>
+    </ul>
+  </div>
+  <div class="qs">
+    <article class="q" data-q="26"><div class="qhead"><span class="qn">Q26</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Vapor d'água (gás ideal) a 298,15 K: S = 214 J K⁻¹mol⁻¹ a 0,0317 bar. Calcule ΔS = S(1 bar) − S(0,0317 bar). Dica do professor: use uma relação de Maxwell.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <div class="mathscroll">\[\left(\frac{\partial S}{\partial P}\right)_T=-\left(\frac{\partial V}{\partial T}\right)_P=-\frac RP\;\Rightarrow\;\Delta S=-R\ln\frac{1}{0{,}0317}=-8{,}314\times3{,}451\approx-28{,}7\ \text{J K}^{-1}\text{mol}^{-1}\]</div>
+        <span class="ans">C · −28,7 J K⁻¹mol⁻¹</span><p class="note">Faz sentido: aumentar a pressão do gás diminui a entropia.</p></div></details></article>
+
+    <article class="q" data-q="27"><div class="qhead"><span class="qn">Q27</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Com o resultado anterior, a entropia molar padrão S°<sub>vapor</sub>(298,15 K).</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>\(S^\circ=S(0{,}0317\ \text{bar})+\Delta S=214-28{,}7\approx185\) J K⁻¹mol⁻¹.</p>
+        <span class="ans">C · 185 J K⁻¹mol⁻¹</span></div></details></article>
+
+    <article class="q" data-q="28"><div class="qhead"><span class="qn">Q28</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Alumínio: M = 26,98 g/mol, ρ = 2,7 g/cm³. Volume molar?</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>\(V_m=M/\rho=26{,}98/2{,}7\approx9{,}9\ \text{cm}^3/\text{mol}\).</p>
+        <span class="ans">B · ≈ 10 cm³ mol⁻¹</span></div></details></article>
+
+    <article class="q" data-q="29"><div class="qhead"><span class="qn">Q29</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Alumínio a 298,15 K: κ<sub>T</sub> = 7,7×10⁻⁶ Pa⁻¹, α = 23,1×10⁻⁶ K⁻¹, C<sub>P</sub> = 24,2 J mol⁻¹K⁻¹. Calcule C<sub>V</sub>.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol><li>\(C_V=C_P-\frac{\alpha^2TV}{\kappa_T}\), com V em m³/mol: \(9{,}9\times10^{-6}\).</li><li>\(\alpha^2TV/\kappa_T=\frac{(23{,}1\times10^{-6})^2\times298{,}15\times9{,}9\times10^{-6}}{7{,}7\times10^{-6}}\approx2\times10^{-7}\) J mol⁻¹K⁻¹: desprezível.</li><li>\(C_V\approx C_P=24{,}2\).</li></ol>
+        <span class="ans">E · 24,2 J mol⁻¹K⁻¹</span><p class="note">Ideia que o professor cobra na Q30: metal expande pouco, então C<sub>P</sub> ≈ C<sub>V</sub>.</p></div></details></article>
+
+    <article class="q" data-q="30"><div class="qhead"><span class="qn">Q30</span><span class="tag conc">conceito</span><span class="tag inc">pede a falsa</span></div>
+      <p class="stmt">Afirmações sobre C<sub>P</sub> e C<sub>V</sub> de gases e do alumínio.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ul class="alts">
+          <li><span class="k x">A</span><span class="x">Certa: a V cte o calor vai todo para T; a P cte parte vira trabalho.</span></li>
+          <li><span class="k x">B</span><span class="x">Certa: α do metal é pequeno.</span></li>
+          <li><span class="k v">C</span><span>Falsa: diatômico tem C<sub>V</sub> <b>maior</b> (5/2 R contra 3/2 R).</span></li>
+          <li><span class="k x">D</span><span class="x">Certa: \(C_V=(\partial U/\partial T)_V\).</span></li>
+          <li><span class="k x">E</span><span class="x">Certa: \(C_P=(\partial H/\partial T)_P\).</span></li>
+        </ul><span class="ans">C</span></div></details></article>
+
+    <article class="q" data-q="31"><div class="qhead"><span class="qn">Q31</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Δ<sub>f</sub>G(H₂O) a 400,15 K e 1 atm, sabendo Δ<sub>f</sub>G°₂₉₈ = −237,13 kJ/mol e Δ<sub>f</sub>H°₂₉₈ = −285,83 kJ/mol (constante). Use Gibbs-Helmholtz.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <div class="mathscroll">\[\Delta G_2=T_2\left[\frac{\Delta G_1}{T_1}+\Delta H\left(\frac1{T_2}-\frac1{T_1}\right)\right]\]</div>
+        <ol><li>\(\Delta G_1/T_1=-237{,}13/298{,}15=-0{,}7953\).</li><li>\(1/400{,}15-1/298{,}15=0{,}0024991-0{,}0033540=-0{,}00085494\); vezes −285,83 ⇒ +0,2444.</li><li>\(\Delta G_2=400{,}15\times(-0{,}7953+0{,}2444)=400{,}15\times(-0{,}5510)\approx-220\) kJ/mol.</li></ol>
+        <span class="ans">C · ≈ −220 kJ mol⁻¹</span></div></details></article>
+  </div>
+</section>
+
+<!-- ================= AULA 7 ================= -->
+<section id="aula7">
+  <div class="sec-head">
+    <span class="eyebrow">Semana 07 · Q32–Q40</span>
+    <div class="row"><h2>Aula 7 · Equilíbrio, misturas e reações</h2>
+      <span class="links"><a href="https://drive.google.com/file/d/1CYN6uZFX9mG9zx4-5W8YWIMI8lnl5fU-/view" target="_blank" rel="noopener">Lista original (com a tabela de Δ<sub>f</sub>G°)</a><a href="https://drive.google.com/file/d/1Cy3gPJtyKYGMm9dvfnYxpbYqaCsC4F3K/view" target="_blank" rel="noopener">Resolução do professor</a><a href="https://drive.google.com/file/d/1FMfUXZqOAniQ0HL1Ll5PvHexhRwQ5YNS/view" target="_blank" rel="noopener">Slides</a></span></div>
+  </div>
+  <div class="box theory">
+    <h3>Teoria necessária</h3>
+    <ul>
+      <li><b>Estabilidade:</b> no equilíbrio \(dS=0,\ d^2S\lt0\) (máximo) e \(dG=0,\ d^2G\gt0\) (mínimo). Mínimos locais explicam líquido superaquecido e vapor super-resfriado.</li>
+      <li><b>Equilíbrio de fases:</b> \(\mu^{\alpha}=\mu^{\beta}\) em cada componente. Regra das fases (substância pura): \(f=3-p\) (ponto triplo: f = 0). Transição de 1ª ordem: G contínua, S e V saltam; calor latente \(L=T\Delta S=\Delta H\).</li>
+      <li><b>Gás ideal:</b> \(\mu=\mu^\circ+RT\ln(P/P^\circ)\), P° = 1 bar.</li>
+      <li><b>Raoult</b> (mistura ideal, moléculas parecidas): \(P_j=x_jP_j^*\), \(P_{tot}=\sum x_jP_j^*\). Composição do vapor (Dalton): \(y_j=P_j/P_{tot}\). \(\mu_j=\mu_j^*+RT\ln x_j\).</li>
+      <li><b>Henry</b> (soluto diluído): \(P_j=x_jk_{H,j}\) quando \(x_j\to0\); k<sub>H</sub> é a tangente da curva P<sub>j</sub>(x<sub>j</sub>) em x<sub>j</sub> = 0.</li>
+      <li><b>Mistura não ideal:</b> \(P_1=x_1P_1^*e^{\alpha x_2^2+\beta x_2^3+\dots}\); atividade \(a_j=P_j/P_j^*\), \(\gamma_j=a_j/x_j\).
+        <br><b>Truque:</b> P* = limite com x<sub>j</sub> → 1 (exponencial vira e⁰ = 1). k<sub>H</sub> = limite com x<sub>j</sub> → 0, quando o <i>outro</i> componente → 1: \(k_H=P^*e^{\alpha+\beta}\).</li>
+      <li><b>Reações:</b> grau de avanço ξ, \(dN_j=\nu_jd\xi\). \(\Delta_rG=(\partial G/\partial\xi)_{T,P}=\sum\nu\mu\). \(\Delta_rG=\Delta_rG^\circ+RT\ln Q\); no equilíbrio \(\Delta_rG=0\Rightarrow\Delta_rG^\circ=-RT\ln K_P\).</li>
+      <li>\(\Delta_rG^\circ=\sum\nu\,\Delta_fG^\circ(\text{produtos})-\sum\nu\,\Delta_fG^\circ(\text{reagentes})\). Elemento na forma mais estável a 1 bar (H₂, N₂, O₂ gasosos) tem \(\Delta_fG^\circ=0\). Também \(\Delta_rG^\circ=\Delta_rH^\circ-T\Delta_rS^\circ\).</li>
+    </ul>
+  </div>
+  <div class="qs">
+    <article class="q" data-q="32"><div class="qhead"><span class="qn">Q32</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">1-propanol (P*₁ = 20,9 torr) e 2-propanol (P*₂ = 45,2 torr), mistura ideal a 25 °C, quantidades iguais no líquido. Pressão total do vapor?</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>\(P_{tot}=x_1P_1^*+x_2P_2^*=0{,}5\times20{,}9+0{,}5\times45{,}2=10{,}45+22{,}60=33{,}05\) torr.</p>
+        <span class="ans">B · 33,05 torr</span></div></details></article>
+
+    <article class="q" data-q="33"><div class="qhead"><span class="qn">Q33</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Mesmo sistema: composição do vapor (y₁, y₂).</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>\(y_1=\frac{P_1}{P_{tot}}=\frac{10{,}45}{33{,}05}=0{,}316\), \(y_2=1-y_1=0{,}684\). O vapor fica mais rico no componente mais volátil (2-propanol).</p>
+        <span class="ans">C · y₁ = 0,316 ; y₂ = 0,684</span><p class="note">A resolução oficial escreve 30,05 no denominador por digitação; o certo é 33,05 e o resultado é o mesmo.</p></div></details></article>
+
+    <article class="q" data-q="34"><div class="qhead"><span class="qn">Q34</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Mistura não ideal: \(P_1=120\,x_1e^{0{,}20x_2^2+0{,}10x_2^3}\), \(P_2=140\,x_2e^{0{,}35x_1^2-0{,}10x_1^3}\) (torr). Calcule P*₁.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>Componente 1 puro: x₁ → 1, x₂ → 0 ⇒ \(P_1=120\times1\times e^0=120\) torr = P*₁.</p>
+        <span class="ans">B · 120 torr</span></div></details></article>
+
+    <article class="q" data-q="35"><div class="qhead"><span class="qn">Q35</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Mesmo sistema: P*₂.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>x₂ → 1, x₁ → 0 ⇒ \(P_2=140\times e^0=140\) torr.</p>
+        <span class="ans">D · 140 torr</span></div></details></article>
+
+    <article class="q" data-q="36"><div class="qhead"><span class="qn">Q36</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Mesmo sistema: constante de Henry k<sub>H,1</sub>.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>Henry vale com 1 diluído: x₁ → 0, x₂ → 1. Então \(P_1\to x_1\cdot120\,e^{0{,}20+0{,}10}\) ⇒ \(k_{H,1}=120\,e^{0{,}30}=120\times1{,}350\approx162\) torr.</p>
+        <span class="ans">C · 162 torr</span></div></details></article>
+
+    <article class="q" data-q="37"><div class="qhead"><span class="qn">Q37</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Mesmo sistema: k<sub>H,2</sub>.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <p>x₂ → 0, x₁ → 1: \(k_{H,2}=140\,e^{0{,}35-0{,}10}=140\,e^{0{,}25}=140\times1{,}284\approx180\) torr.</p>
+        <span class="ans">E · 180 torr</span></div></details></article>
+
+    <article class="q" data-q="38"><div class="qhead"><span class="qn">Q38</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Δ<sub>r</sub>G° e K<sub>P</sub> a 298,15 K para N₂O₄(g) ⇌ 2 NO₂(g), com a tabela de Δ<sub>f</sub>G° da lista.</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol><li>Da tabela (usada na resolução): Δ<sub>f</sub>G°(NO₂) = 51,258 kJ/mol; Δ<sub>f</sub>G°(N₂O₄) = 97,787 kJ/mol.</li><li>\(\Delta_rG^\circ=2(51\,258)-97\,787=4729\) J/mol.</li><li>\(K_P=e^{-4729/(8{,}314\times298{,}15)}=e^{-1{,}908}\approx0{,}15\).</li></ol>
+        <span class="ans">A · 4729 J mol⁻¹ e 0,15</span><p class="note">A resolução oficial escreve "kJ" nos 51258 e 97787; são J (ou 51,258 kJ). ΔG° &gt; 0 ⇒ K &lt; 1.</p></div></details></article>
+
+    <article class="q" data-q="39"><div class="qhead"><span class="qn">Q39</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Δ<sub>r</sub>G° e K<sub>P</sub> para H₂(g) + I₂(g) ⇌ 2 HI(g).</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol><li>Δ<sub>f</sub>G°: HI(g) = 1,560 kJ/mol; I₂(g) = 19,325 kJ/mol; H₂ = 0. I₂ <i>gasoso</i> não é o estado padrão (o padrão é sólido), por isso não é zero.</li><li>\(\Delta_rG^\circ=2(1560)-19\,325=-16\,205\) J/mol.</li><li>\(K_P=e^{16\,205/2478{,}8}=e^{6{,}537}\approx690\).</li></ol>
+        <span class="ans">E · −16205 J mol⁻¹ e 690</span></div></details></article>
+
+    <article class="q" data-q="40"><div class="qhead"><span class="qn">Q40</span><span class="tag calc">cálculo</span></div>
+      <p class="stmt">Δ<sub>r</sub>G° e K<sub>P</sub> para 3 H₂(g) + N₂(g) ⇌ 2 NH₃(g).</p>
+      <details><summary>Como resolver</summary><div class="sol">
+        <ol><li>Δ<sub>f</sub>G°(NH₃) = −16,367 kJ/mol; H₂ e N₂ = 0.</li><li>\(\Delta_rG^\circ=2(-16\,367)=-32\,734\) J/mol.</li><li>\(K_P=e^{32\,734/2478{,}8}=e^{13{,}2}\approx5{,}4\times10^5\).</li></ol>
+        <span class="ans">D · −32734 J mol⁻¹ e 5,4×10⁵</span></div></details></article>
+  </div>
+</section>
+
+<!-- ================= PEGADINHAS ================= -->
+<section id="pegadinhas">
+  <div class="sec-head"><span class="eyebrow">Revise antes de entrar na sala</span><h2>Pegadinhas das listas</h2></div>
+  <div class="traps">
+    <div class="box"><b>Correta ou incorreta?</b><p>Q7, Q15, Q21, Q25 e Q30 pedem a incorreta/falsa. Sublinhe a palavra no enunciado.</p></div>
+    <div class="box"><b>Convenção de sinal</b><p>O curso usa "entra no sistema = +". A Q5 inverte. Leia antes de pôr o sinal em W.</p></div>
+    <div class="box"><b>Unidades</b><p>1 bar·dm³ = 100 J; °C + 273,15; alternativas com "kJ" no lugar de J são armadilha.</p></div>
+    <div class="box"><b>Adiabático ≠ isentrópico</b><p>Só é isentrópico se for reversível. Irreversível: ΔS = S<sub>prod</sub> &gt; 0.</p></div>
+    <div class="box"><b>Produto, não soma</b><p>Ω<sub>total</sub> = Ω<sub>A</sub>·Ω<sub>B</sub>; S é que soma.</p></div>
+    <div class="box"><b>Micro × macro</b><p>Microestados são equiprováveis; macroestados não. Vetor de ocupação é macroestado.</p></div>
+    <div class="box"><b>U do gás ideal</b><p>Não depende do volume: f/2·nRT. O₂ sem vibração tem f = 5.</p></div>
+    <div class="box"><b>Extremos</b><p>max S (U,V,N) · min U (S,V,N) · min A (T,V,N) · min G (T,P,N). Nunca "maximiza G".</p></div>
+    <div class="box"><b>Ponto de transição</b><p>ΔG = 0 e μ iguais nas fases; ΔS = ΔH/T. G de massas iguais de líquido e vapor são iguais.</p></div>
+    <div class="box"><b>Entropia residual</b><p>Não viola a 3ª lei; indica que não é cristal perfeito. 0 K é inatingível.</p></div>
+    <div class="box"><b>Δ<sub>f</sub>G° = 0</b><p>Só para elementos no estado padrão (H₂, N₂). I₂(g) não é.</p></div>
+    <div class="box"><b>Sinal de ΔG° e K</b><p>ΔG° &gt; 0 ⇒ K &lt; 1; ΔG° &lt; 0 ⇒ K &gt; 1. K = e<sup>−ΔG°/RT</sup>.</p></div>
+  </div>
+</section>
+
+<div class="tools">
+  <button type="button" id="openAll">Mostrar todas as resoluções</button>
+  <button type="button" id="closeAll">Esconder todas</button>
+  <button type="button" id="resetDone">Zerar marcações</button>
+</div>
+</main>
+
+<footer class="wrap">Feito a partir dos slides, listas e resoluções das aulas 1 a 7 do módulo de Termodinâmica (QUI-28, 2026.2, prof. Amauri Jardim de Paula) no Google Classroom. Os links abrem os PDFs originais no seu Drive.</footer>
+
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'},options:{skipHtmlTags:['script','noscript','style','textarea']}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+<script>
+(function(){
+  var KEY='qui28-feitas';
+  var done={};
+  try{done=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){done={};}
+  var qs=document.querySelectorAll('.q');
+  var prog=document.getElementById('progress');
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  function count(){var n=0;for(var k in done){if(done[k])n++;}prog.textContent=n+'/40 feitas';}
+  qs.forEach(function(q){
+    var n=q.getAttribute('data-q');
+    var lab=document.createElement('label');
+    var cb=document.createElement('input');cb.type='checkbox';cb.id='feita-'+n;
+    cb.checked=!!done[n];if(cb.checked)q.classList.add('done');
+    lab.appendChild(cb);lab.appendChild(document.createTextNode('feita'));
+    q.querySelector('.qhead').appendChild(lab);
+    cb.addEventListener('change',function(){done[n]=cb.checked;q.classList.toggle('done',cb.checked);save();count();});
+  });
+  count();
+  document.getElementById('openAll').addEventListener('click',function(){document.querySelectorAll('.q details').forEach(function(d){d.open=true;});});
+  document.getElementById('closeAll').addEventListener('click',function(){document.querySelectorAll('.q details').forEach(function(d){d.open=false;});});
+  document.getElementById('resetDone').addEventListener('click',function(){done={};save();qs.forEach(function(q){q.classList.remove('done');var c=q.querySelector('input');if(c)c.checked=false;});count();});
+})();
+</script>
+</body>
+</html>
