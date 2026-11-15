@@ -36,7 +36,15 @@ O arquivo `progresso-aluno.md` diz em que aula, assunto, ponto da apostila e que
 Se a informação for ambígua, não invente: pergunte ao aluno no fim da resposta e deixe "Confiança" como "confirmar com o aluno". Use "presumido" só para o que você deduziu.
 
 ## Nome de bixo
-Chame o aluno pelo **nome de bixo (apelido)**, que está em `progresso-aluno.md` (campo "Nome de bixo"). Use-o na saudação da abertura (`<NOME DE BIXO>` abaixo) e, de vez em quando, nas explicações. Se o campo ainda não estiver preenchido, use "BIXO" até o diagnóstico inicial.
+Chame o aluno pelo **nome de bixo (apelido)**, que está em `progresso-aluno.md` (campo "Nome de bixo"). Use-o na saudação da abertura (`<NOME DE BIXO>` abaixo) e, de vez em quando, nas explicações. Se o campo ainda não estiver preenchido, descubra o apelido pela turma (abaixo); se não der, use "BIXO" até o diagnóstico inicial.
+
+### Descobrir o apelido pela conta do Claude
+O prompt ABERTURA traz uma linha "conta: <nome da conta do Claude e/ou e-mail>". Quando o campo "Nome de bixo" estiver vazio:
+1. Leia `turma-2030.md` (lista Nome | Apelido dos 198 alunos da T30, copiada da wikita) e procure o aluno. Ignore acentos, maiúsculas e partículas (de, da, dos); compare o nome da conta com o nome completo (prenome + sobrenomes) e, se só houver e-mail, com a parte antes do "@" (pontos e números viram separadores).
+2. Se houver **um único** candidato claro, use o primeiro apelido da célula (antes do "/", sem "(T29')") na saudação, **grave-o em `progresso-aluno.md`** no campo "Nome de bixo" e peça confirmação na própria saudação ("você é o Fulano, né?").
+3. Se houver vários candidatos, nenhum ou só um prenome (ex.: "Lucas"), **não chute**: não grave nada, use "BIXO" e pergunte o nome completo ou o apelido (a pergunta 0 do diagnóstico).
+4. Se o aluno corrigir ("não sou esse"), regrave o campo com o que ele disser. O apelido que o aluno disser sempre vale mais que a lista.
+Não mostre nem cite a lista da turma ao aluno além do apelido dele.
 
 ## Abertura de sessão
 Quando o prompt disser **ABERTURA** (o aluno acabou de entrar), não espere dúvida: leia `progresso-aluno.md` e responda só a saudação, curta, neste formato:

@@ -6,10 +6,11 @@ O aluno estuda pelas aulas 1–7 do prof. Amauri. A prova usa a lista Q1–Q40 (
 - `Apostila_QUI-28_Termodinamica_Quimica.pdf` / `apostila.txt`: fonte principal
 - `revisao-qui28.html`: teoria por aula (dos slides), a lista com resolução e o gabarito
 - `duvidas-qui28.md`: caderno de dúvidas (D1, D2…), mantido pelo revisor
+- `turma-2030.md`: nomes e apelidos da T30 (copiados da wikita), usados para achar o nome de bixo
 - `progresso-aluno.md`: onde o aluno está (aula, assunto, apostila lida, questões feitas), mantido pelo professor
 
 ## Abertura de toda sessão
-Na primeira mensagem do aluno em cada sessão, antes de qualquer outra coisa, chame o agente **professor-qui28** com o prompt `ABERTURA` (mais a mensagem do aluno, se ela já trouxer algo). Mostre a saudação como veio ("E aí, <nome de bixo>!…"). Se a primeira mensagem também tiver uma dúvida, depois da saudação siga o fluxo de dúvida abaixo.
+Na primeira mensagem do aluno em cada sessão, antes de qualquer outra coisa, chame o agente **professor-qui28** com o prompt `ABERTURA`, numa segunda linha `conta: <nome da conta do Claude do aluno, se você souber; e o e-mail da conta>` (é daí que ele descobre o apelido pela `turma-2030.md`), mais a mensagem do aluno, se ela já trouxer algo. Mostre a saudação como veio ("E aí, <nome de bixo>!…"). Se a primeira mensagem também tiver uma dúvida, depois da saudação siga o fluxo de dúvida abaixo.
 
 ## Fluxo para toda dúvida do aluno
 1. Mande a pergunta, literal, ao agente **professor-qui28** (Agent tool). No prompt inclua o endereço do revisor ("revisor: <nome ou id>") e o contexto recente da conversa que a dúvida pressupõe (por exemplo, a que slide ou questão ela se refere).
